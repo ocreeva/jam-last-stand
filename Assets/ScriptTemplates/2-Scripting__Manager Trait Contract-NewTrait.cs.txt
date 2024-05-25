@@ -1,0 +1,31 @@
+using Moyba.Contracts;
+
+namespace #NAMESPACE#
+{
+    public class #SCRIPTNAME# : TraitBase<#FEATURE#Manager>, I#SCRIPTNAME#
+    {
+        private static readonly _Stub#SCRIPTNAME# _Stub = new _Stub#SCRIPTNAME#();
+
+        internal static I#SCRIPTNAME# Stub => _Stub;
+
+        private void Awake()
+        {
+            this._Assert(ReferenceEquals(_manager.#TRAIT#, _Stub), "is replacing a non-stub instance.");
+
+            _manager.#TRAIT# = this;
+
+            _Stub.TransferControlTo(this);
+        }
+
+        private void OnDestroy()
+        {
+            this._Assert(ReferenceEquals(_manager.#TRAIT#, this), "is stubbing a different instance.");
+
+            _manager.#TRAIT# = _Stub;
+
+            _Stub.TransferControlFrom(this);
+        }
+
+        private class _Stub#SCRIPTNAME# : TraitStubBase<#SCRIPTNAME#>, I#SCRIPTNAME# { }
+    }
+}

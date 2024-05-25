@@ -1,0 +1,7 @@
+namespace #NAMESPACE#
+{
+    [System.Serializable]
+    public struct #SCRIPTNAME#
+    {
+    }
+}

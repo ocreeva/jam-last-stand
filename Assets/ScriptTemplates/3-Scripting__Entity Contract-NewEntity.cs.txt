@@ -1,0 +1,17 @@
+using Moyba.Contracts;
+
+namespace #NAMESPACE#
+{
+    public class #SCRIPTNAME# : EntityBase<#FEATURE#Manager>, I#SCRIPTNAME#
+    {
+        private void OnDisable()
+        {
+            _manager.Deregister(this);
+        }
+
+        private void OnEnable()
+        {
+            _manager.Register(this);
+        }
+    }
+}
