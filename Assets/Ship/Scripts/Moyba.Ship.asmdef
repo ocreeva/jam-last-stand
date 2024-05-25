@@ -1,0 +1,16 @@
+{
+    "name": "Moyba.Ship",
+    "rootNamespace": "Moyba.Ship",
+    "references": [
+        "GUID:9d4be3ea5f3df0f4382f0864b003e396"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
