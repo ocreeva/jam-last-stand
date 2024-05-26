@@ -56,18 +56,27 @@
             "id": "c130de77-227e-4aa3-9a0a-8983b027ebb1",
             "actions": [
                 {
-                    "name": "Turn",
+                    "name": "Fire",
+                    "type": "Button",
+                    "id": "4dbb5cd4-8da2-4fef-9102-cb405b7dce83",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Move",
                     "type": "Value",
-                    "id": "b466ad4a-ad93-40f4-a03a-0661cc18c8a7",
+                    "id": "e33d602f-a3ba-4196-a856-d9ac8282573b",
                     "expectedControlType": "Axis",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Move",
+                    "name": "Turn",
                     "type": "Value",
-                    "id": "e33d602f-a3ba-4196-a856-d9ac8282573b",
+                    "id": "b466ad4a-ad93-40f4-a03a-0661cc18c8a7",
                     "expectedControlType": "Axis",
                     "processors": "",
                     "interactions": "",
@@ -140,6 +149,17 @@
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "72047973-1385-4a56-ac3e-174c57024a91",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Fire",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }

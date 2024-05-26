@@ -215,6 +215,7 @@ GameObject:
   m_Component:
   - component: {fileID: 489579243}
   - component: {fileID: 489579244}
+  - component: {fileID: 489579245}
   m_Layer: 0
   m_Name: Ship
   m_TagString: Untagged
@@ -236,6 +237,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 227516336}
+  - {fileID: 1192692987}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &489579244
@@ -254,6 +256,22 @@ MonoBehaviour:
   _accelerationRate: 5
   _maximumVelocity: 4
   _rotationRate: 2
+--- !u!114 &489579245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 489579242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 125b3901a7c34084bac65bd3762018b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _manager: {fileID: 11400000, guid: 71116c489ac795a4895c41c32e992a3f, type: 2}
+  _source: {fileID: 1192692987}
+  _delayBetweenShots: 0.2
+  _projectilePrefab: {fileID: 6559920452507858821, guid: a5cbe5ab375ef264088336ee7d5c373d, type: 3}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -707,6 +725,51 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _manager: {fileID: 11400000, guid: 6e1d958c27230044db612d31c98973b1, type: 2}
+--- !u!1 &892221258
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 892221260}
+  - component: {fileID: 892221259}
+  m_Layer: 0
+  m_Name: Projectiles
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &892221259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 892221258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bbe426efb3e23e47b56f0b8d12ac107, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _manager: {fileID: 11400000, guid: b25dd51cd9e805742b5db6fd0eeb594a, type: 2}
+--- !u!4 &892221260
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 892221258}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &896595241
 GameObject:
   m_ObjectHideFlags: 0
@@ -857,6 +920,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1192692986
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1192692987}
+  m_Layer: 0
+  m_Name: Projectile Source
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1192692987
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1192692986}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.3, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 489579243}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1472703321
 GameObject:
   m_ObjectHideFlags: 0
@@ -888,6 +982,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _camera: {fileID: 11400000, guid: 7fef1f589dffac24b974200117e2e856, type: 2}
   _input: {fileID: 11400000, guid: 6e1d958c27230044db612d31c98973b1, type: 2}
+  _projectiles: {fileID: 11400000, guid: b25dd51cd9e805742b5db6fd0eeb594a, type: 2}
   _ship: {fileID: 11400000, guid: 71116c489ac795a4895c41c32e992a3f, type: 2}
 --- !u!4 &1472703323
 Transform:
@@ -948,3 +1043,4 @@ SceneRoots:
   - {fileID: 489579243}
   - {fileID: 681585728}
   - {fileID: 965633089}
+  - {fileID: 892221260}

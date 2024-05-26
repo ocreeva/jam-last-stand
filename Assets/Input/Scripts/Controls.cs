@@ -81,18 +81,27 @@ namespace Moyba.Input
             ""id"": ""c130de77-227e-4aa3-9a0a-8983b027ebb1"",
             ""actions"": [
                 {
-                    ""name"": ""Turn"",
+                    ""name"": ""Fire"",
+                    ""type"": ""Button"",
+                    ""id"": ""4dbb5cd4-8da2-4fef-9102-cb405b7dce83"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Move"",
                     ""type"": ""Value"",
-                    ""id"": ""b466ad4a-ad93-40f4-a03a-0661cc18c8a7"",
+                    ""id"": ""e33d602f-a3ba-4196-a856-d9ac8282573b"",
                     ""expectedControlType"": ""Axis"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Move"",
+                    ""name"": ""Turn"",
                     ""type"": ""Value"",
-                    ""id"": ""e33d602f-a3ba-4196-a856-d9ac8282573b"",
+                    ""id"": ""b466ad4a-ad93-40f4-a03a-0661cc18c8a7"",
                     ""expectedControlType"": ""Axis"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -165,6 +174,17 @@ namespace Moyba.Input
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""72047973-1385-4a56-ac3e-174c57024a91"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Fire"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -237,8 +257,9 @@ namespace Moyba.Input
             m_Camera_Zoom = m_Camera.FindAction("Zoom", throwIfNotFound: true);
             // Ship
             m_Ship = asset.FindActionMap("Ship", throwIfNotFound: true);
-            m_Ship_Turn = m_Ship.FindAction("Turn", throwIfNotFound: true);
+            m_Ship_Fire = m_Ship.FindAction("Fire", throwIfNotFound: true);
             m_Ship_Move = m_Ship.FindAction("Move", throwIfNotFound: true);
+            m_Ship_Turn = m_Ship.FindAction("Turn", throwIfNotFound: true);
         }
 
         ~@Controls()
@@ -352,14 +373,16 @@ namespace Moyba.Input
         // Ship
         private readonly InputActionMap m_Ship;
         private List<IShipActions> m_ShipActionsCallbackInterfaces = new List<IShipActions>();
-        private readonly InputAction m_Ship_Turn;
+        private readonly InputAction m_Ship_Fire;
         private readonly InputAction m_Ship_Move;
+        private readonly InputAction m_Ship_Turn;
         public struct ShipActions
         {
             private @Controls m_Wrapper;
             public ShipActions(@Controls wrapper) { m_Wrapper = wrapper; }
-            public InputAction @Turn => m_Wrapper.m_Ship_Turn;
+            public InputAction @Fire => m_Wrapper.m_Ship_Fire;
             public InputAction @Move => m_Wrapper.m_Ship_Move;
+            public InputAction @Turn => m_Wrapper.m_Ship_Turn;
             public InputActionMap Get() { return m_Wrapper.m_Ship; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -369,22 +392,28 @@ namespace Moyba.Input
             {
                 if (instance == null || m_Wrapper.m_ShipActionsCallbackInterfaces.Contains(instance)) return;
                 m_Wrapper.m_ShipActionsCallbackInterfaces.Add(instance);
-                @Turn.started += instance.OnTurn;
-                @Turn.performed += instance.OnTurn;
-                @Turn.canceled += instance.OnTurn;
+                @Fire.started += instance.OnFire;
+                @Fire.performed += instance.OnFire;
+                @Fire.canceled += instance.OnFire;
                 @Move.started += instance.OnMove;
                 @Move.performed += instance.OnMove;
                 @Move.canceled += instance.OnMove;
+                @Turn.started += instance.OnTurn;
+                @Turn.performed += instance.OnTurn;
+                @Turn.canceled += instance.OnTurn;
             }
 
             private void UnregisterCallbacks(IShipActions instance)
             {
-                @Turn.started -= instance.OnTurn;
-                @Turn.performed -= instance.OnTurn;
-                @Turn.canceled -= instance.OnTurn;
+                @Fire.started -= instance.OnFire;
+                @Fire.performed -= instance.OnFire;
+                @Fire.canceled -= instance.OnFire;
                 @Move.started -= instance.OnMove;
                 @Move.performed -= instance.OnMove;
                 @Move.canceled -= instance.OnMove;
+                @Turn.started -= instance.OnTurn;
+                @Turn.performed -= instance.OnTurn;
+                @Turn.canceled -= instance.OnTurn;
             }
 
             public void RemoveCallbacks(IShipActions instance)
@@ -453,8 +482,9 @@ namespace Moyba.Input
         }
         public interface IShipActions
         {
-            void OnTurn(InputAction.CallbackContext context);
+            void OnFire(InputAction.CallbackContext context);
             void OnMove(InputAction.CallbackContext context);
+            void OnTurn(InputAction.CallbackContext context);
         }
     }
 }
