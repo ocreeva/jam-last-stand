@@ -32,6 +32,18 @@ namespace Moyba.Ship
             _Stub.TransferControlFrom(this);
         }
 
+        private void OnDisable()
+        {
+            Omnibus.Input.Ship.OnTurnChanged -= this.HandleTurnChanged;
+            this.HandleTurnChanged(this, 0f);
+        }
+
+        private void OnEnable()
+        {
+            Omnibus.Input.Ship.OnTurnChanged += this.HandleTurnChanged;
+            this.HandleTurnChanged(this, Omnibus.Input.Ship.Turn);
+        }
+
         private void FixedUpdate()
         {
             this.FixedUpdate_Rotate();
@@ -44,6 +56,9 @@ namespace Moyba.Ship
 
             this.transform.Rotate(this.transform.forward, Time.fixedDeltaTime * _TurnRate * _turnSpeed * turn);
         }
+
+        private void HandleTurnChanged(UnityEngine.Object _, float turn)
+            => Omnibus.Camera.Framing.enabled = Math.Abs(turn) > float.Epsilon;
 
         private class _StubShipMovement : TraitStubBase<ShipMovement>, IShipMovement { }
     }
