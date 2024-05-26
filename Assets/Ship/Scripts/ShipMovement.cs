@@ -6,11 +6,16 @@ namespace Moyba.Ship
 {
     public class ShipMovement : TraitBase<ShipManager>, IShipMovement
     {
-        private const float _TurnRate = -180 / Mathf.PI;
+        private const float _RadiansToDegrees = -180 / Mathf.PI;
 
         private static readonly _StubShipMovement _Stub = new _StubShipMovement();
 
-        [SerializeField, Range(float.Epsilon, 10f)] private float _turnSpeed = 1f;
+        [Header("Configuration")]
+        [SerializeField, Range(float.Epsilon, 10f)] private float _accelerationRate = 1f;
+        [SerializeField, Range(float.Epsilon, 10f)] private float _maximumVelocity = 1f;
+        [SerializeField, Range(float.Epsilon, 10f)] private float _rotationRate = 1f;
+
+        [NonSerialized] private Vector3 _velocity;
 
         internal static IShipMovement Stub => _Stub;
 
@@ -46,15 +51,32 @@ namespace Moyba.Ship
 
         private void FixedUpdate()
         {
-            this.FixedUpdate_Rotate();
+            var deltaTime = Time.fixedDeltaTime;
+
+            this.Update_Accelerate(deltaTime);
+            this.Update_Move(deltaTime);
+            this.Update_Rotate(deltaTime);
         }
 
-        private void FixedUpdate_Rotate()
+        private void Update_Accelerate(float deltaTime)
+        {
+            var move = Omnibus.Input.Ship.Move;
+            if (Mathf.Abs(move) < float.Epsilon) return;
+
+            _velocity = Vector3.ClampMagnitude(_velocity + this.transform.up * deltaTime * _accelerationRate * move, _maximumVelocity);
+        }
+
+        private void Update_Move(float deltaTime)
+        {
+            this.transform.position += _velocity * deltaTime;
+        }
+
+        private void Update_Rotate(float deltaTime)
         {
             var turn = Omnibus.Input.Ship.Turn;
             if (Mathf.Abs(turn) < float.Epsilon) return;
 
-            this.transform.Rotate(this.transform.forward, Time.fixedDeltaTime * _TurnRate * _turnSpeed * turn);
+            this.transform.Rotate(this.transform.forward, deltaTime * _RadiansToDegrees * _rotationRate * turn);
         }
 
         private void HandleTurnChanged(UnityEngine.Object _, float turn)

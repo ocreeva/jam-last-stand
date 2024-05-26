@@ -38,6 +38,15 @@ namespace Moyba.Input
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Move"",
+                    ""type"": ""Value"",
+                    ""id"": ""e33d602f-a3ba-4196-a856-d9ac8282573b"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -71,6 +80,39 @@ namespace Moyba.Input
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Turn"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""8db11f85-5375-40d5-a301-1b5ead832259"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""d2a53045-42ad-4d97-a4a5-69380fc8ef3c"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""e25a0c49-0def-46e3-ae9f-496a60716916"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 }
@@ -143,6 +185,7 @@ namespace Moyba.Input
             // Ship
             m_Ship = asset.FindActionMap("Ship", throwIfNotFound: true);
             m_Ship_Turn = m_Ship.FindAction("Turn", throwIfNotFound: true);
+            m_Ship_Move = m_Ship.FindAction("Move", throwIfNotFound: true);
         }
 
         ~@Controls()
@@ -210,11 +253,13 @@ namespace Moyba.Input
         private readonly InputActionMap m_Ship;
         private List<IShipActions> m_ShipActionsCallbackInterfaces = new List<IShipActions>();
         private readonly InputAction m_Ship_Turn;
+        private readonly InputAction m_Ship_Move;
         public struct ShipActions
         {
             private @Controls m_Wrapper;
             public ShipActions(@Controls wrapper) { m_Wrapper = wrapper; }
             public InputAction @Turn => m_Wrapper.m_Ship_Turn;
+            public InputAction @Move => m_Wrapper.m_Ship_Move;
             public InputActionMap Get() { return m_Wrapper.m_Ship; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -227,6 +272,9 @@ namespace Moyba.Input
                 @Turn.started += instance.OnTurn;
                 @Turn.performed += instance.OnTurn;
                 @Turn.canceled += instance.OnTurn;
+                @Move.started += instance.OnMove;
+                @Move.performed += instance.OnMove;
+                @Move.canceled += instance.OnMove;
             }
 
             private void UnregisterCallbacks(IShipActions instance)
@@ -234,6 +282,9 @@ namespace Moyba.Input
                 @Turn.started -= instance.OnTurn;
                 @Turn.performed -= instance.OnTurn;
                 @Turn.canceled -= instance.OnTurn;
+                @Move.started -= instance.OnMove;
+                @Move.performed -= instance.OnMove;
+                @Move.canceled -= instance.OnMove;
             }
 
             public void RemoveCallbacks(IShipActions instance)
@@ -299,6 +350,7 @@ namespace Moyba.Input
         public interface IShipActions
         {
             void OnTurn(InputAction.CallbackContext context);
+            void OnMove(InputAction.CallbackContext context);
         }
     }
 }

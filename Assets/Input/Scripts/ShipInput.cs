@@ -10,14 +10,22 @@ namespace Moyba.Input
 
         [NonSerialized] private Controls.ShipActions _shipActions;
 
+        [NonSerialized] private float _move;
         [NonSerialized] private float _turn;
+
+        public float Move
+        {
+            get => _move;
+            set => _Set(value, ref _move, changed: this.OnMoveChanged);
+        }
 
         public float Turn
         {
             get => _turn;
-            set => _Set(value, ref _turn, changed: OnTurnChanged);
+            set => _Set(value, ref _turn, changed: this.OnTurnChanged);
         }
 
+        public event ValueEventHandler<float> OnMoveChanged;
         public event ValueEventHandler<float> OnTurnChanged;
 
         internal static IShipInput Stub => _Stub;
@@ -42,11 +50,15 @@ namespace Moyba.Input
 
         private void OnDisable()
         {
+            _shipActions.Move.canceled -= this.HandleMoveChanged;
+            _shipActions.Move.started -= this.HandleMoveChanged;
+
             _shipActions.Turn.canceled -= this.HandleTurnChanged;
             _shipActions.Turn.started -= this.HandleTurnChanged;
 
             _shipActions.Disable();
 
+            this.Move = 0f;
             this.Turn = 0f;
         }
 
@@ -55,21 +67,30 @@ namespace Moyba.Input
             _shipActions = _manager.Controls.Ship;
             _shipActions.Enable();
 
+            _shipActions.Move.canceled += this.HandleMoveChanged;
+            _shipActions.Move.started += this.HandleMoveChanged;
+
             _shipActions.Turn.canceled += this.HandleTurnChanged;
             _shipActions.Turn.started += this.HandleTurnChanged;
         }
+
+        private void HandleMoveChanged(InputAction.CallbackContext context)
+            => this.Move = context.ReadValue<float>();
 
         private void HandleTurnChanged(InputAction.CallbackContext context)
             => this.Turn = context.ReadValue<float>();
 
         private class _StubShipInput : TraitStubBase<ShipInput>, IShipInput
         {
+            public float Move => 0f;
             public float Turn => 0f;
 
+            public event ValueEventHandler<float> OnMoveChanged;
             public event ValueEventHandler<float> OnTurnChanged;
 
             protected override void TransferEvents(ShipInput trait)
             {
+                (this.OnMoveChanged, trait.OnMoveChanged) = (trait.OnMoveChanged, this.OnMoveChanged);
                 (this.OnTurnChanged, trait.OnTurnChanged) = (trait.OnTurnChanged, this.OnTurnChanged);
             }
         }

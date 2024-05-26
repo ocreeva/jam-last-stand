@@ -251,7 +251,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _manager: {fileID: 11400000, guid: 71116c489ac795a4895c41c32e992a3f, type: 2}
-  _turnSpeed: 5
+  _accelerationRate: 5
+  _maximumVelocity: 4
+  _rotationRate: 2
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -384,7 +386,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.1401148, z: -10}
+  m_LocalPosition: {x: 0, y: 1.8343841, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -540,7 +542,7 @@ MonoBehaviour:
   CameraDistance: 10
   DeadZoneDepth: 0
   Composition:
-    ScreenPosition: {x: 0, y: 0.35}
+    ScreenPosition: {x: 0, y: 0.3}
     DeadZone:
       Enabled: 0
       Size: {x: 0.2, y: 0.2}
@@ -608,7 +610,7 @@ Transform:
   m_GameObject: {fileID: 681585725}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.1401148, z: -10}
+  m_LocalPosition: {x: 0, y: 1.8343841, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -628,7 +630,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _manager: {fileID: 11400000, guid: 7fef1f589dffac24b974200117e2e856, type: 2}
   _target: {fileID: 489579243}
-  _offsetFromCenter: 0.35
+  _offsetFromCenter: 0.3
 --- !u!1 &838337044
 GameObject:
   m_ObjectHideFlags: 0
