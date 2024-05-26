@@ -13,6 +13,8 @@ namespace Moyba.Input
         [NonSerialized] private float _move;
         [NonSerialized] private float _turn;
 
+        internal static IShipInput Stub => _Stub;
+
         public float Move
         {
             get => _move;
@@ -27,8 +29,6 @@ namespace Moyba.Input
 
         public event ValueEventHandler<float> OnMoveChanged;
         public event ValueEventHandler<float> OnTurnChanged;
-
-        internal static IShipInput Stub => _Stub;
 
         private void Awake()
         {

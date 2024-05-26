@@ -27,6 +27,56 @@ namespace Moyba.Input
     ""name"": ""Controls"",
     ""maps"": [
         {
+            ""name"": ""Camera"",
+            ""id"": ""4aa47cdf-2258-46f1-89da-fb6c41475a5a"",
+            ""actions"": [
+                {
+                    ""name"": ""Zoom"",
+                    ""type"": ""Value"",
+                    ""id"": ""b5d580d2-8edc-4b06-89fd-f7ff34cd34aa"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""f95329c9-4492-44ae-b9fa-dd755e8742f6"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Zoom"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""b9e90484-2d54-4868-8532-cebe5c2e569b"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Zoom"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""fc44f5b9-8556-40b1-bab6-801e5fb56802"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Zoom"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                }
+            ]
+        },
+        {
             ""name"": ""Ship"",
             ""id"": ""c130de77-227e-4aa3-9a0a-8983b027ebb1"",
             ""actions"": [
@@ -64,7 +114,7 @@ namespace Moyba.Input
                 {
                     ""name"": ""negative"",
                     ""id"": ""c6592d6f-b789-410b-9e81-0f3782842c37"",
-                    ""path"": ""<Keyboard>/a"",
+                    ""path"": ""<Keyboard>/d"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -75,7 +125,7 @@ namespace Moyba.Input
                 {
                     ""name"": ""positive"",
                     ""id"": ""a5801a11-b3f9-41a4-83a4-9a8d73ff7246"",
-                    ""path"": ""<Keyboard>/d"",
+                    ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -182,6 +232,9 @@ namespace Moyba.Input
         }
     ]
 }");
+            // Camera
+            m_Camera = asset.FindActionMap("Camera", throwIfNotFound: true);
+            m_Camera_Zoom = m_Camera.FindAction("Zoom", throwIfNotFound: true);
             // Ship
             m_Ship = asset.FindActionMap("Ship", throwIfNotFound: true);
             m_Ship_Turn = m_Ship.FindAction("Turn", throwIfNotFound: true);
@@ -190,6 +243,7 @@ namespace Moyba.Input
 
         ~@Controls()
         {
+            Debug.Assert(!m_Camera.enabled, "This will cause a leak and performance issues, Controls.Camera.Disable() has not been called.");
             Debug.Assert(!m_Ship.enabled, "This will cause a leak and performance issues, Controls.Ship.Disable() has not been called.");
         }
 
@@ -248,6 +302,52 @@ namespace Moyba.Input
         {
             return asset.FindBinding(bindingMask, out action);
         }
+
+        // Camera
+        private readonly InputActionMap m_Camera;
+        private List<ICameraActions> m_CameraActionsCallbackInterfaces = new List<ICameraActions>();
+        private readonly InputAction m_Camera_Zoom;
+        public struct CameraActions
+        {
+            private @Controls m_Wrapper;
+            public CameraActions(@Controls wrapper) { m_Wrapper = wrapper; }
+            public InputAction @Zoom => m_Wrapper.m_Camera_Zoom;
+            public InputActionMap Get() { return m_Wrapper.m_Camera; }
+            public void Enable() { Get().Enable(); }
+            public void Disable() { Get().Disable(); }
+            public bool enabled => Get().enabled;
+            public static implicit operator InputActionMap(CameraActions set) { return set.Get(); }
+            public void AddCallbacks(ICameraActions instance)
+            {
+                if (instance == null || m_Wrapper.m_CameraActionsCallbackInterfaces.Contains(instance)) return;
+                m_Wrapper.m_CameraActionsCallbackInterfaces.Add(instance);
+                @Zoom.started += instance.OnZoom;
+                @Zoom.performed += instance.OnZoom;
+                @Zoom.canceled += instance.OnZoom;
+            }
+
+            private void UnregisterCallbacks(ICameraActions instance)
+            {
+                @Zoom.started -= instance.OnZoom;
+                @Zoom.performed -= instance.OnZoom;
+                @Zoom.canceled -= instance.OnZoom;
+            }
+
+            public void RemoveCallbacks(ICameraActions instance)
+            {
+                if (m_Wrapper.m_CameraActionsCallbackInterfaces.Remove(instance))
+                    UnregisterCallbacks(instance);
+            }
+
+            public void SetCallbacks(ICameraActions instance)
+            {
+                foreach (var item in m_Wrapper.m_CameraActionsCallbackInterfaces)
+                    UnregisterCallbacks(item);
+                m_Wrapper.m_CameraActionsCallbackInterfaces.Clear();
+                AddCallbacks(instance);
+            }
+        }
+        public CameraActions @Camera => new CameraActions(this);
 
         // Ship
         private readonly InputActionMap m_Ship;
@@ -346,6 +446,10 @@ namespace Moyba.Input
                 if (m_XRSchemeIndex == -1) m_XRSchemeIndex = asset.FindControlSchemeIndex("XR");
                 return asset.controlSchemes[m_XRSchemeIndex];
             }
+        }
+        public interface ICameraActions
+        {
+            void OnZoom(InputAction.CallbackContext context);
         }
         public interface IShipActions
         {

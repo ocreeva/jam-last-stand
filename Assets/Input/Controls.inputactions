@@ -2,6 +2,56 @@
     "name": "Controls",
     "maps": [
         {
+            "name": "Camera",
+            "id": "4aa47cdf-2258-46f1-89da-fb6c41475a5a",
+            "actions": [
+                {
+                    "name": "Zoom",
+                    "type": "Value",
+                    "id": "b5d580d2-8edc-4b06-89fd-f7ff34cd34aa",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "1D Axis",
+                    "id": "f95329c9-4492-44ae-b9fa-dd755e8742f6",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Zoom",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "b9e90484-2d54-4868-8532-cebe5c2e569b",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Zoom",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "fc44f5b9-8556-40b1-bab6-801e5fb56802",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Zoom",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                }
+            ]
+        },
+        {
             "name": "Ship",
             "id": "c130de77-227e-4aa3-9a0a-8983b027ebb1",
             "actions": [
@@ -39,7 +89,7 @@
                 {
                     "name": "negative",
                     "id": "c6592d6f-b789-410b-9e81-0f3782842c37",
-                    "path": "<Keyboard>/a",
+                    "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -50,7 +100,7 @@
                 {
                     "name": "positive",
                     "id": "a5801a11-b3f9-41a4-83a4-9a8d73ff7246",
-                    "path": "<Keyboard>/d",
+                    "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

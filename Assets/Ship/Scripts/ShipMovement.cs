@@ -6,8 +6,6 @@ namespace Moyba.Ship
 {
     public class ShipMovement : TraitBase<ShipManager>, IShipMovement
     {
-        private const float _RadiansToDegrees = -180 / Mathf.PI;
-
         private static readonly _StubShipMovement _Stub = new _StubShipMovement();
 
         [Header("Configuration")]
@@ -76,7 +74,7 @@ namespace Moyba.Ship
             var turn = Omnibus.Input.Ship.Turn;
             if (Mathf.Abs(turn) < float.Epsilon) return;
 
-            this.transform.Rotate(this.transform.forward, deltaTime * _RadiansToDegrees * _rotationRate * turn);
+            this.transform.Rotate(this.transform.forward, deltaTime * Mathf.Rad2Deg * _rotationRate * turn);
         }
 
         private void HandleTurnChanged(UnityEngine.Object _, float turn)

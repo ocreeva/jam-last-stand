@@ -359,7 +359,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 34
+  field of view: 90
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -386,7 +386,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.8343841, z: -10}
+  m_LocalPosition: {x: 0, y: 3, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -520,6 +520,7 @@ GameObject:
   - component: {fileID: 681585727}
   - component: {fileID: 681585726}
   - component: {fileID: 681585729}
+  - component: {fileID: 681585730}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -539,7 +540,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 886251e9a18ece04ea8e61686c173e1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CameraDistance: 10
+  CameraDistance: 5
   DeadZoneDepth: 0
   Composition:
     ScreenPosition: {x: 0, y: 0.3}
@@ -582,7 +583,7 @@ MonoBehaviour:
     LookAtTarget: {fileID: 0}
     CustomLookAtTarget: 0
   Lens:
-    FieldOfView: 34
+    FieldOfView: 90
     OrthographicSize: 5
     NearClipPlane: 0.3
     FarClipPlane: 1000
@@ -610,7 +611,7 @@ Transform:
   m_GameObject: {fileID: 681585725}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.8343841, z: -10}
+  m_LocalPosition: {x: 0, y: 3, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -631,6 +632,22 @@ MonoBehaviour:
   _manager: {fileID: 11400000, guid: 7fef1f589dffac24b974200117e2e856, type: 2}
   _target: {fileID: 489579243}
   _offsetFromCenter: 0.3
+--- !u!114 &681585730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 681585725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b2f231c60f1ee34a81df14ee19bf235, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _manager: {fileID: 11400000, guid: 7fef1f589dffac24b974200117e2e856, type: 2}
+  _minimumZoomFactor: 0.7
+  _maximumZoomFactor: 3
+  _zoomRate: 2
 --- !u!1 &838337044
 GameObject:
   m_ObjectHideFlags: 0
@@ -640,6 +657,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 838337046}
+  - component: {fileID: 838337047}
   - component: {fileID: 838337045}
   m_Layer: 0
   m_Name: Input
@@ -676,6 +694,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &838337047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 838337044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea878a43f33af5c4eab4b3e139f68b2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _manager: {fileID: 11400000, guid: 6e1d958c27230044db612d31c98973b1, type: 2}
 --- !u!1 &896595241
 GameObject:
   m_ObjectHideFlags: 0

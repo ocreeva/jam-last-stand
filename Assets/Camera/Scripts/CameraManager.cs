@@ -6,5 +6,6 @@ namespace Moyba.Camera
     public class CameraManager : ScriptableObject, ICameraManager
     {
         public ICameraFraming Framing { get; internal set; } = CameraFraming.Stub;
+        public ICameraZoom Zoom { get; internal set; } = CameraZoom.Stub;
     }
 }
