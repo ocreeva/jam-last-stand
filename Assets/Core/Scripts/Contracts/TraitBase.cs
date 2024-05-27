@@ -42,4 +42,18 @@ namespace Moyba.Contracts
             protected virtual void TransferEvents(TTrait trait) { }
         }
     }
+
+    public abstract class TraitBase<TEntity, TManager> : ContractBase
+        where TEntity : EntityBase<TManager>
+        where TManager : ScriptableObject
+    {
+        [SerializeField] protected TEntity _entity;
+
+#if UNITY_EDITOR
+        protected virtual void Reset()
+        {
+            _entity = this.GetComponent<TEntity>();
+        }
+#endif
+    }
 }

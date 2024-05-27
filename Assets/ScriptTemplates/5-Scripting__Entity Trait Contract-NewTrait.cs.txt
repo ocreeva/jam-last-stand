@@ -1,0 +1,8 @@
+using Moyba.Contracts;
+
+namespace #NAMESPACE#
+{
+    public class #SCRIPTNAME# : TraitBase<#ENTITY#, #FEATURE#Manager>, I#SCRIPTNAME#
+    {
+    }
+}

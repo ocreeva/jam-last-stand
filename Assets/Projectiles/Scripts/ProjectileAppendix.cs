@@ -20,6 +20,5 @@ namespace Moyba.Projectiles
 
             _manager.Appendix = null;
         }
-
     }
 }

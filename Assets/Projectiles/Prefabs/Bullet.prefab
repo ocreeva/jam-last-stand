@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3894203516303871415}
   - component: {fileID: 3415708690986492483}
-  m_Layer: 0
+  - component: {fileID: 8526340241184877996}
+  m_Layer: 7
   m_Name: Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,8 +47,46 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _manager: {fileID: 11400000, guid: b25dd51cd9e805742b5db6fd0eeb594a, type: 2}
-  _velocity: 10
+  _damage: 1
   _lifetime: 5
+  _velocity: 10
+  _impactFxPrefab: {fileID: 7990031998451223495, guid: a04c8930f63e84e43a9120b4be41d0b6, type: 3}
+--- !u!58 &8526340241184877996
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6559920452507858821}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_Radius: 0.05
 --- !u!1 &8067714670880443587
 GameObject:
   m_ObjectHideFlags: 0
@@ -58,7 +97,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3764684894129836233}
   - component: {fileID: 5833610077733586172}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}

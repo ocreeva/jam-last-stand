@@ -7,10 +7,26 @@ namespace Moyba.Projectiles
     public class Projectile : EntityBase<ProjectileManager>, IProjectile
     {
         [Header("Configuration")]
-        [SerializeField, Range(float.Epsilon, 10f)] private float _velocity = 1f;
+        [SerializeField, Range(1, 100)] private int _damage = 1;
         [SerializeField, Range(float.Epsilon, 10f)] private float _lifetime = 1f;
+        [SerializeField, Range(float.Epsilon, 10f)] private float _velocity = 1f;
+
+        [Header("Prefabs")]
+        [SerializeField] private UnityEngine.Object _impactFxPrefab;
 
         [NonSerialized] private float _elapsedTime;
+
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            var damageable = other.GetComponent<IDamageable>();
+            if (damageable == null) return;
+
+            damageable.ApplyDamage(_damage);
+
+            UnityEngine.Object.Instantiate(_impactFxPrefab, other.transform.position, Quaternion.identity, Omnibus.Fx.Container);
+
+            UnityEngine.Object.Destroy(this.gameObject);
+        }
 
         private void FixedUpdate()
         {

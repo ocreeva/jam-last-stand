@@ -40,10 +40,18 @@ namespace Moyba.Contracts
         }
 
 #if UNITY_EDITOR
+        // for nonstandard names
+        private static readonly IDictionary<string, string> _NameLookup = new Dictionary<string, string>
+        {
+            { "Enemy", "Enemies" },
+        };
+
         protected static T _LoadOmnibusAsset<T>()
             where T : class
         {
             var name = _ContractUtility.GetFeatureName<T>();
+            if (_NameLookup.ContainsKey(name)) name = _NameLookup[name];
+
             var asset = _LoadOmnibusAsset<T>(name);
             if (asset != null) return asset;
 

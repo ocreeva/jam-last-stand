@@ -8,6 +8,7 @@ namespace Moyba.Editor
 {
     public class ScriptTemplateProcessor : AssetModificationProcessor
     {
+        private const string _EntityParameter = "#ENTITY#";
         private const string _FeatureParameter = "#FEATURE#";
         private const string _NamespaceParameter = "#NAMESPACE#";
         private const string _TraitParameter = "#TRAIT#";
@@ -19,6 +20,8 @@ namespace Moyba.Editor
 
         private const string _ScriptMetaFileExtension = ".cs.meta";
 
+        private static readonly char[] _CapitalLetters = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' };
+
         public static void OnWillCreateAsset(string assetPath)
         {
             // only process C# script meta files
@@ -29,15 +32,17 @@ namespace Moyba.Editor
             var scriptName = Path.GetFileNameWithoutExtension(scriptPath);
             var directorySegments = Path.GetDirectoryName(scriptPath).Split(Path.DirectorySeparatorChar);
             var featureHierarchy = _GetFeatureHierarchy(directorySegments);
-            var featureName = featureHierarchy.FirstOrDefault();
+            var featureValue = featureHierarchy.FirstOrDefault();
+            var traitValue = _GenerateTraitValue(scriptName, featureValue);
             var isEditorScript = directorySegments.Any(s => s.Equals(_EditorDirectoryName));
 
             // create a lookup for template values
             var templateParameters = new Dictionary<string, string>
             {
-                { _FeatureParameter, featureHierarchy.FirstOrDefault() },
+                { _EntityParameter, _GenerateEntityValue(scriptName, traitValue) },
+                { _FeatureParameter, featureValue },
                 { _NamespaceParameter, _GenerateNamespaceValue(featureHierarchy, isEditorScript) },
-                { _TraitParameter, featureName != null ? scriptName.Replace(featureName, String.Empty) : scriptName },
+                { _TraitParameter, _GenerateTraitValue(scriptName, featureValue) },
             };
 
             // read the asset file
@@ -61,6 +66,11 @@ namespace Moyba.Editor
             }
         }
 
+        private static string _GenerateEntityValue(string scriptName, string traitValue)
+        {
+            return scriptName.Replace(traitValue, String.Empty);
+        }
+
         private static string _GenerateNamespaceValue(string[] featureHierarchy, bool isEditorScript)
         {
             // prepend the project's root namespace
@@ -71,6 +81,14 @@ namespace Moyba.Editor
 
             // generate the namespace
             return String.Join('.', namespaceSegments);
+        }
+
+        private static string _GenerateTraitValue(string scriptName, string featureValue)
+        {
+            if ((featureValue != null) && scriptName.Contains(featureValue)) return scriptName.Replace(featureValue, String.Empty);
+
+            var traitIndex = scriptName.LastIndexOfAny(_CapitalLetters);
+            return scriptName[traitIndex..];
         }
 
         private static string[] _GetFeatureHierarchy(IEnumerable<string> directorySegments)
