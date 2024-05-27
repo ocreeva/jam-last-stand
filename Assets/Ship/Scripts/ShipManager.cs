@@ -6,5 +6,9 @@ namespace Moyba.Ship
     public class ShipManager : ScriptableObject, IShipManager
     {
         public IShipMovement Movement { get; internal set; } = ShipMovement.Stub;
+
+        public Vector3 Position => this.Appendix.Position;
+
+        internal ShipAppendix Appendix { get; set; }
     }
 }
