@@ -7,7 +7,7 @@ namespace Moyba.Ship
     {
         public IShipMovement Movement { get; internal set; } = ShipMovement.Stub;
 
-        public Vector3 Position => this.Appendix.Position;
+        public Vector3 Position => this.Appendix?.Position ?? Vector3.zero;
 
         internal ShipAppendix Appendix { get; set; }
     }
