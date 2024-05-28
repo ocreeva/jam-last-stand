@@ -3,9 +3,9 @@ using Moyba.Contracts;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Moyba.Fx
+namespace Moyba.Bounds
 {
-    public class CombatBoundsPanel : ContractBase
+    public class BoundsPanel : EntityBase<BoundsManager>
     {
         [Header("Components")]
         [SerializeField] private Image[] _hazeImages;

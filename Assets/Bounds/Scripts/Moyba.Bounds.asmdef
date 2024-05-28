@@ -1,0 +1,7 @@
+{
+    "name": "Moyba.Bounds",
+    "rootNamespace": "Moyba.Bounds",
+    "references": [
+        "GUID:9d4be3ea5f3df0f4382f0864b003e396"
+    ]
+}

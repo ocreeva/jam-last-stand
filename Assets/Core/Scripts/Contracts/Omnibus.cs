@@ -1,3 +1,4 @@
+using Moyba.Bounds;
 using Moyba.Camera;
 using Moyba.Enemies;
 using Moyba.Fx;
@@ -13,6 +14,7 @@ namespace Moyba.Contracts
     {
         private static Omnibus _Instance;
 
+        [SerializeField, Require(typeof(IBoundsManager))] private Object _bounds;
         [SerializeField, Require(typeof(ICameraManager))] private Object _camera;
         [SerializeField, Require(typeof(IEnemyManager))] private Object _enemies;
         [SerializeField, Require(typeof(IFxManager))] private Object _fx;
@@ -20,6 +22,7 @@ namespace Moyba.Contracts
         [SerializeField, Require(typeof(IProjectileManager))] private Object _projectiles;
         [SerializeField, Require(typeof(IShipManager))] private Object _ship;
 
+        public static IBoundsManager Bounds { get; private set; }
         public static ICameraManager Camera { get; private set; }
         public static IEnemyManager Enemies { get; private set; }
         public static IFxManager Fx { get; private set; }
@@ -38,6 +41,7 @@ namespace Moyba.Contracts
                 _Instance = this;
                 Object.DontDestroyOnLoad(this.gameObject);
 
+                Omnibus.Bounds = (IBoundsManager)_bounds;
                 Omnibus.Camera = (ICameraManager)_camera;
                 Omnibus.Enemies = (IEnemyManager)_enemies;
                 Omnibus.Fx = (IFxManager)_fx;
@@ -50,6 +54,7 @@ namespace Moyba.Contracts
 #if UNITY_EDITOR
         private void Reset()
         {
+            _bounds = _LoadOmnibusAsset<IBoundsManager>() as Object;
             _camera = _LoadOmnibusAsset<ICameraManager>() as Object;
             _enemies = _LoadOmnibusAsset<IEnemyManager>() as Object;
             _fx = _LoadOmnibusAsset<IFxManager>() as Object;

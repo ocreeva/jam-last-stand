@@ -8,28 +8,26 @@ namespace Moyba.Fx
         [Header("Configuration")]
         [SerializeField, Range(1f, 20f)] private float _radius = 1f;
         [SerializeField, Range(0f, 1f)] private float _scale = 0f;
-        [SerializeField, Range(-1024f, 0f)] private float _xMin = 0f;
-        [SerializeField, Range(0f, 1024f)] private float _xMax = 0f;
-        [SerializeField, Range(-1024f, 0f)] private float _yMin = 0f;
-        [SerializeField, Range(0f, 1024f)] private float _yMax = 0f;
 
         [Header("Prefabs")]
         [SerializeField] private GameObject _starPrefab;
 
         private void Start()
         {
+            var maximumStarBound = 3 * Omnibus.Bounds.MaximumDistance;
+
             var xStep = _radius * Mathf.Sqrt(3f);
             var yStep = _radius * 2f;
 
             var yStart = 0f;
-            for (var x = 0f; x < _xMax; x += xStep)
+            for (var x = 0f; x < maximumStarBound; x += xStep)
             {
-                for (var y = yStart; y < _yMax; y += yStep)
+                for (var y = yStart; y < maximumStarBound; y += yStep)
                 {
                     this.Start_InstantiateStar(x, y);
                 }
 
-                for (var y = yStart - yStep; y > _yMin; y -= yStep)
+                for (var y = yStart - yStep; y > -maximumStarBound; y -= yStep)
                 {
                     this.Start_InstantiateStar(x, y);
                 }
@@ -38,14 +36,14 @@ namespace Moyba.Fx
             }
 
             yStart = _radius;
-            for (var x = -xStep; x > _xMin; x -= xStep)
+            for (var x = -xStep; x > -maximumStarBound; x -= xStep)
             {
-                for (var y = yStart; y < _yMax; y += yStep)
+                for (var y = yStart; y < maximumStarBound; y += yStep)
                 {
                     this.Start_InstantiateStar(x, y);
                 }
 
-                for (var y = yStart - yStep; y > _yMin; y -= yStep)
+                for (var y = yStart - yStep; y > -maximumStarBound; y -= yStep)
                 {
                     this.Start_InstantiateStar(x, y);
                 }

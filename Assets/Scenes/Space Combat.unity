@@ -170,7 +170,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 55246381}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -245,7 +245,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 133543242}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -380,7 +380,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 259028793}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -442,7 +442,7 @@ GameObject:
   - component: {fileID: 323809323}
   - component: {fileID: 323809322}
   - component: {fileID: 323809321}
-  - component: {fileID: 323809320}
+  - component: {fileID: 323809325}
   m_Layer: 5
   m_Name: Bounds
   m_TagString: Untagged
@@ -450,25 +450,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &323809320
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 323809319}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8de4f0e4ced713840ad3ddf71e93e9ec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _northBounds: {fileID: 1732316866}
-  _westBounds: {fileID: 627615629}
-  _eastBounds: {fileID: 418684422}
-  _southBounds: {fileID: 750836586}
-  _hazeWarningDistance: 22
-  _hazeAlertDistance: 27
-  _maximumDistance: 32
 --- !u!114 &323809321
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -555,6 +536,23 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &323809325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 323809319}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f37c2211998b2564fa90a8c2ce340943, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _manager: {fileID: 11400000, guid: c283085c57a75044a889314cec9a8991, type: 2}
+  _northBounds: {fileID: 1732316866}
+  _westBounds: {fileID: 627615629}
+  _eastBounds: {fileID: 418684422}
+  _southBounds: {fileID: 750836586}
 --- !u!1 &364860260
 GameObject:
   m_ObjectHideFlags: 0
@@ -580,7 +578,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 364860260}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -641,7 +639,7 @@ GameObject:
   - component: {fileID: 418684421}
   - component: {fileID: 418684422}
   m_Layer: 5
-  m_Name: Bounds - East
+  m_Name: East Bounds
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -678,9 +676,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 418684420}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1cebd37222d1d3489388edcb2e94b8a, type: 3}
+  m_Script: {fileID: 11500000, guid: ed9325113585a1f4f80a699ac1348f71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _manager: {fileID: 11400000, guid: c283085c57a75044a889314cec9a8991, type: 2}
   _hazeImages:
   - {fileID: 843385026}
   - {fileID: 612781221}
@@ -739,7 +738,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 433069579}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -895,7 +894,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 508350670}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -1050,7 +1049,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 3, z: -5}
+  m_LocalPosition: {x: 0, y: 6, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1113,7 +1112,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 537245814}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -1215,7 +1214,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 612781218}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -1333,7 +1332,7 @@ GameObject:
   - component: {fileID: 627615628}
   - component: {fileID: 627615629}
   m_Layer: 5
-  m_Name: Bounds - West
+  m_Name: West Bounds
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1370,9 +1369,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 627615627}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1cebd37222d1d3489388edcb2e94b8a, type: 3}
+  m_Script: {fileID: 11500000, guid: ed9325113585a1f4f80a699ac1348f71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _manager: {fileID: 11400000, guid: c283085c57a75044a889314cec9a8991, type: 2}
   _hazeImages:
   - {fileID: 433069582}
   - {fileID: 55246384}
@@ -1411,7 +1411,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 886251e9a18ece04ea8e61686c173e1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CameraDistance: 5
+  CameraDistance: 10
   DeadZoneDepth: 0
   Composition:
     ScreenPosition: {x: 0, y: 0.3}
@@ -1482,7 +1482,7 @@ Transform:
   m_GameObject: {fileID: 681585725}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 3, z: -5}
+  m_LocalPosition: {x: 0, y: 6, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1516,7 +1516,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _manager: {fileID: 11400000, guid: 7fef1f589dffac24b974200117e2e856, type: 2}
-  _minimumZoomFactor: 0.7
+  _minimumZoomFactor: 1.7
   _maximumZoomFactor: 3
   _zoomRate: 2
 --- !u!1 &750836584
@@ -1530,7 +1530,7 @@ GameObject:
   - component: {fileID: 750836585}
   - component: {fileID: 750836586}
   m_Layer: 5
-  m_Name: Bounds - South
+  m_Name: South Bounds
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1567,9 +1567,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 750836584}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1cebd37222d1d3489388edcb2e94b8a, type: 3}
+  m_Script: {fileID: 11500000, guid: ed9325113585a1f4f80a699ac1348f71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _manager: {fileID: 11400000, guid: c283085c57a75044a889314cec9a8991, type: 2}
   _hazeImages:
   - {fileID: 1492768155}
   - {fileID: 2013167414}
@@ -1687,7 +1688,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 843385023}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -2147,10 +2148,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _radius: 4
   _scale: 0.2
-  _xMin: -10
-  _xMax: 10
-  _yMin: -10
-  _yMax: 10
   _starPrefab: {fileID: 4121331250079926671, guid: 1583387f87c3c7846aa5f272f5c4669e, type: 3}
 --- !u!1 &1192692986
 GameObject:
@@ -2208,7 +2205,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1243866161}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -2287,6 +2284,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8707c9211cadb7b42a763d3b1df08a05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _bounds: {fileID: 11400000, guid: c283085c57a75044a889314cec9a8991, type: 2}
   _camera: {fileID: 11400000, guid: 7fef1f589dffac24b974200117e2e856, type: 2}
   _enemies: {fileID: 11400000, guid: 72bd7f0490bfeb244905aa78ddce879d, type: 2}
   _fx: {fileID: 11400000, guid: 2513afba7b0e3df4788f8810500e927f, type: 2}
@@ -2360,7 +2358,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1492768152}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -2477,10 +2475,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _radius: 2
   _scale: 0
-  _xMin: -10
-  _xMax: 10
-  _yMin: -10
-  _yMax: 10
   _starPrefab: {fileID: 4121331250079926671, guid: 1583387f87c3c7846aa5f272f5c4669e, type: 3}
 --- !u!1 &1732316864
 GameObject:
@@ -2493,7 +2487,7 @@ GameObject:
   - component: {fileID: 1732316865}
   - component: {fileID: 1732316866}
   m_Layer: 5
-  m_Name: Bounds - North
+  m_Name: North Bounds
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2530,9 +2524,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1732316864}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1cebd37222d1d3489388edcb2e94b8a, type: 3}
+  m_Script: {fileID: 11500000, guid: ed9325113585a1f4f80a699ac1348f71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _manager: {fileID: 11400000, guid: c283085c57a75044a889314cec9a8991, type: 2}
   _hazeImages:
   - {fileID: 133543245}
   - {fileID: 508350673}
@@ -2585,10 +2580,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _radius: 3
   _scale: 0.1
-  _xMin: -10
-  _xMax: 10
-  _yMin: -10
-  _yMax: 10
   _starPrefab: {fileID: 4121331250079926671, guid: 1583387f87c3c7846aa5f272f5c4669e, type: 3}
 --- !u!1 &2013167411
 GameObject:
@@ -2642,7 +2633,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2013167411}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
