@@ -49,5 +49,6 @@ MonoBehaviour:
   _enemies: {fileID: 11400000, guid: 72bd7f0490bfeb244905aa78ddce879d, type: 2}
   _fx: {fileID: 11400000, guid: 2513afba7b0e3df4788f8810500e927f, type: 2}
   _input: {fileID: 11400000, guid: 6e1d958c27230044db612d31c98973b1, type: 2}
+  _planet: {fileID: 11400000, guid: e58b96985aa818949a7ef255c1f6775c, type: 2}
   _projectiles: {fileID: 11400000, guid: b25dd51cd9e805742b5db6fd0eeb594a, type: 2}
   _ship: {fileID: 11400000, guid: 71116c489ac795a4895c41c32e992a3f, type: 2}

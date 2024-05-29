@@ -3,6 +3,7 @@ using Moyba.Camera;
 using Moyba.Enemies;
 using Moyba.Fx;
 using Moyba.Input;
+using Moyba.Planet;
 using Moyba.Projectiles;
 using Moyba.Ship;
 using UnityEngine;
@@ -19,6 +20,7 @@ namespace Moyba.Contracts
         [SerializeField, Require(typeof(IEnemyManager))] private Object _enemies;
         [SerializeField, Require(typeof(IFxManager))] private Object _fx;
         [SerializeField, Require(typeof(IInputManager))] private Object _input;
+        [SerializeField, Require(typeof(IPlanetManager))] private Object _planet;
         [SerializeField, Require(typeof(IProjectileManager))] private Object _projectiles;
         [SerializeField, Require(typeof(IShipManager))] private Object _ship;
 
@@ -27,6 +29,7 @@ namespace Moyba.Contracts
         public static IEnemyManager Enemies { get; private set; }
         public static IFxManager Fx { get; private set; }
         public static IInputManager Input { get; private set; }
+        public static IPlanetManager Planet { get; private set; }
         public static IProjectileManager Projectiles { get; private set; }
         public static IShipManager Ship { get; private set; }
 
@@ -46,6 +49,7 @@ namespace Moyba.Contracts
                 Omnibus.Enemies = (IEnemyManager)_enemies;
                 Omnibus.Fx = (IFxManager)_fx;
                 Omnibus.Input = (IInputManager)_input;
+                Omnibus.Planet = (IPlanetManager)_planet;
                 Omnibus.Projectiles = (IProjectileManager)_projectiles;
                 Omnibus.Ship = (IShipManager)_ship;
             }
@@ -59,6 +63,7 @@ namespace Moyba.Contracts
             _enemies = _LoadOmnibusAsset<IEnemyManager>() as Object;
             _fx = _LoadOmnibusAsset<IFxManager>() as Object;
             _input = _LoadOmnibusAsset<IInputManager>() as Object;
+            _planet = _LoadOmnibusAsset<IPlanetManager>() as Object;
             _projectiles = _LoadOmnibusAsset<IProjectileManager>() as Object;
             _ship = _LoadOmnibusAsset<IShipManager>() as Object;
         }
