@@ -9,8 +9,15 @@ namespace Moyba.Planet
     {
         [SerializeField] private LocationData[] _locationData;
 
+        [Header("Configuration")]
+        [SerializeField, Range(0f, 1f)] private float _fortifyRate = 1f;
+        [SerializeField, Range(0f, 1f)] private float _repairRate = 1f;
+
         public IPlanetTarget Target { get; internal set; } = PlanetTarget.Stub;
         public IPlanetTime Time { get; internal set; } = PlanetTime.Stub;
+
+        internal float FortifyRate => _fortifyRate;
+        internal float RepairRate => _repairRate;
 
         internal IEnumerable<Location> GetLocations()
             => _locationData.Select(d => d.Location);

@@ -9,9 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d7e0a5166c38304cb6e4e483eaaa582, type: 3}
-  m_Name: South America
+  m_Script: {fileID: 11500000, guid: fa9d086a434e175478d36c4e27fefddf, type: 3}
+  m_Name: Time
   m_EditorClassIdentifier: 
-  _manager: {fileID: 11400000, guid: e58b96985aa818949a7ef255c1f6775c, type: 2}
-  _location: 2
-  _displayName: South America

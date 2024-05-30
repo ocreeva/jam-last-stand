@@ -7,6 +7,8 @@ namespace Moyba.Planet
     [CreateAssetMenu(fileName = "NewLocationData", menuName = "Data/Location")]
     public class LocationData : ScriptableObjectContract, ILocationData
     {
+        [SerializeField] private PlanetManager _manager;
+
         [Header("Configuration")]
         [SerializeField] private Location _location;
         [SerializeField] private string _displayName;
@@ -40,5 +42,25 @@ namespace Moyba.Planet
         public event ValueEventHandler<float> OnInfrastructureChanged;
         public event ValueEventHandler<float> OnDefensesChanged;
         public event ValueEventHandler<Activity> OnActivityChanged;
+
+        internal void ApplyActivity(float assistance)
+        {
+            switch (this.Activity)
+            {
+                case Activity.Assist:
+                    break;
+
+                case Activity.Fortify:
+                    this.Defenses = Mathf.Clamp01(this.Defenses + _manager.FortifyRate * (assistance + this.Infrastructure));
+                    break;
+
+                case Activity.Repair:
+                    this.Infrastructure = Mathf.Clamp01(this.Infrastructure + _manager.RepairRate * (assistance + this.Infrastructure));
+                    break;
+
+                default:
+                    throw new NotSupportedException($"Unhandled {nameof(Activity)} value: {this.Activity}");
+            }
+        }
     }
 }

@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using Moyba.Contracts;
 using UnityEngine;
 
@@ -8,10 +9,12 @@ namespace Moyba.Planet
     {
         private static readonly _StubPlanetTime _Stub = new _StubPlanetTime();
 
+        [SerializeField] private TimeData _timeData;
+
         [Header("Configuration")]
+        [SerializeField, Range(0f, 1f)] private float _assistEffectiveness = 0.5f;
         [SerializeField, Range(1f, 10f)] private float _secondsPerDay = 1f;
 
-        [NonSerialized] private int _day;
         [NonSerialized] private float _elapsedTime;
         [NonSerialized] private bool _isPaused = true;
 
@@ -19,8 +22,8 @@ namespace Moyba.Planet
 
         public int Day
         {
-            get => _day;
-            set => _Set(value, ref _day, changed: this.OnDayChanged);
+            get => _timeData.Day;
+            set => _timeData.Day = value;
         }
 
         public bool IsPaused
@@ -30,6 +33,7 @@ namespace Moyba.Planet
         }
 
         public event ValueEventHandler<int> OnDayChanged;
+
         public event SimpleEventHandler OnPause;
         public event SimpleEventHandler OnResume;
 
@@ -45,6 +49,26 @@ namespace Moyba.Planet
             _Stub.TransferControlTo(this);
         }
 
+        private void HandleTimeDataDayChanged(UnityEngine.Object _, int day)
+        {
+            this.OnDayChanged?.Invoke(this, day);
+
+            var allLocationData = _manager.GetLocations()
+                .Select(location => _manager.GetLocationData(location))
+                .ToArray();
+            var needAssistance = Math.Max(1, allLocationData.Count(data => data.Activity != Activity.Assist));
+            var assistance = allLocationData
+                .Where(data => data.Activity == Activity.Assist)
+                .Select(data => data.Infrastructure * _assistEffectiveness)
+                .Sum() / needAssistance;
+
+            foreach (var location in _manager.GetLocations())
+            {
+                var locationData = _manager.GetLocationData(location);
+                locationData.ApplyActivity(assistance);
+            }
+        }
+
         private void OnDestroy()
         {
             this._Assert(ReferenceEquals(_manager.Time, this), "is stubbing a different instance.");
@@ -52,6 +76,16 @@ namespace Moyba.Planet
             _manager.Time = _Stub;
 
             _Stub.TransferControlFrom(this);
+        }
+
+        private void OnDisable()
+        {
+            _timeData.OnDayChanged -= this.HandleTimeDataDayChanged;
+        }
+
+        private void OnEnable()
+        {
+            _timeData.OnDayChanged += this.HandleTimeDataDayChanged;
         }
 
         private void Update()
@@ -68,7 +102,7 @@ namespace Moyba.Planet
 
         private class _StubPlanetTime : TraitStubBase<PlanetTime>, IPlanetTime
         {
-            public int Day => 1;
+            public int Day => 0;
             public bool IsPaused => false;
 
             public event ValueEventHandler<int> OnDayChanged;

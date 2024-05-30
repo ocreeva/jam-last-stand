@@ -1940,7 +1940,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7b4212a8428e01f429995b50dd3f9540, type: 2}
   m_sharedMaterial: {fileID: 3125157217623991718, guid: 7b4212a8428e01f429995b50dd3f9540, type: 2}
@@ -6378,6 +6378,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7561197185493939838, guid: c2ea3bbbd63b5ea4282e6cd32f85f95c, type: 3}
+      propertyPath: _timeData
+      value: 
+      objectReference: {fileID: 11400000, guid: e3c7ef1ea7eb3e6488e550f8579ce55a, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:

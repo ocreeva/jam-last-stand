@@ -17,3 +17,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 2f866953b41f4314bbb522e799b974cd, type: 2}
   - {fileID: 11400000, guid: dbfd35fbbae4f324298d83f1b2d34b26, type: 2}
   - {fileID: 11400000, guid: e24c6acd26f769a41aca3b4d484b9355, type: 2}
+  _fortifyRate: 0.075
+  _repairRate: 0.075
