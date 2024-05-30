@@ -16,6 +16,7 @@ namespace Moyba.Planet
         [NonSerialized] private float _infrastructure = 1f;
         [NonSerialized] private float _defenses = 0f;
         [NonSerialized] private Activity _activity = Activity.Repair;
+        [NonSerialized] private int _asteroidCount = 10;
 
         public Location Location => _location;
 
@@ -39,9 +40,16 @@ namespace Moyba.Planet
             set => _Set(value, ref _activity, changed: this.OnActivityChanged);
         }
 
+        public int AsteroidCount
+        {
+            get => _asteroidCount;
+            set => _Set(value, ref _asteroidCount, changed: this.OnAsteroidCountChanged);
+        }
+
         public event ValueEventHandler<float> OnInfrastructureChanged;
         public event ValueEventHandler<float> OnDefensesChanged;
         public event ValueEventHandler<Activity> OnActivityChanged;
+        public event ValueEventHandler<int> OnAsteroidCountChanged;
 
         internal void ApplyActivity(float assistance)
         {
@@ -61,6 +69,11 @@ namespace Moyba.Planet
                 default:
                     throw new NotSupportedException($"Unhandled {nameof(Activity)} value: {this.Activity}");
             }
+        }
+
+        internal void ApplyDamage(float damage)
+        {
+            this.Infrastructure = Mathf.Clamp01(this.Infrastructure - damage * (1 - this.Defenses));
         }
     }
 }
