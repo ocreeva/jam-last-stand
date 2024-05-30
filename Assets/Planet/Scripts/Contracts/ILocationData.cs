@@ -10,6 +10,9 @@ namespace Moyba.Planet
         float Defenses { get; }
 
         Activity Activity { get; }
-        Location ActivityLocation { get; }
+
+        event ValueEventHandler<float> OnInfrastructureChanged;
+        event ValueEventHandler<float> OnDefensesChanged;
+        event ValueEventHandler<Activity> OnActivityChanged;
     }
 }

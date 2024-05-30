@@ -1293,6 +1293,7 @@ GameObject:
   - component: {fileID: 550394708}
   - component: {fileID: 550394707}
   - component: {fileID: 550394706}
+  - component: {fileID: 550394709}
   m_Layer: 5
   m_Name: Fortify Button
   m_TagString: Untagged
@@ -1363,7 +1364,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 550394707}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 550394709}
+        m_TargetAssemblyTypeName: Moyba.Planet.UI.ActivityDialogOption, Moyba.Planet
+        m_MethodName: HandleClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &550394707
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1402,6 +1415,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 550394704}
   m_CullTransparentMesh: 1
+--- !u!114 &550394709
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 550394704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53a176bfca3a8234eb7008ddba45d8c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _activityDialog: {fileID: 1911341250}
+  _buttonBackground: {fileID: 550394707}
+  _activity: 2
 --- !u!1 &678128120
 GameObject:
   m_ObjectHideFlags: 0
@@ -1693,6 +1721,42 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5195323459287259603, guid: 218209c6ef6b54544b63658d261e770d, type: 3}
+      propertyPath: _activeButtonColor.b
+      value: 0.9019608
+      objectReference: {fileID: 0}
+    - target: {fileID: 5195323459287259603, guid: 218209c6ef6b54544b63658d261e770d, type: 3}
+      propertyPath: _activeButtonColor.g
+      value: 0.7490196
+      objectReference: {fileID: 0}
+    - target: {fileID: 5195323459287259603, guid: 218209c6ef6b54544b63658d261e770d, type: 3}
+      propertyPath: _activeButtonColor.r
+      value: 0.4509804
+      objectReference: {fileID: 0}
+    - target: {fileID: 5195323459287259603, guid: 218209c6ef6b54544b63658d261e770d, type: 3}
+      propertyPath: _disabledButtonColor.b
+      value: 0.39607844
+      objectReference: {fileID: 0}
+    - target: {fileID: 5195323459287259603, guid: 218209c6ef6b54544b63658d261e770d, type: 3}
+      propertyPath: _disabledButtonColor.g
+      value: 0.36967322
+      objectReference: {fileID: 0}
+    - target: {fileID: 5195323459287259603, guid: 218209c6ef6b54544b63658d261e770d, type: 3}
+      propertyPath: _disabledButtonColor.r
+      value: 0.31686276
+      objectReference: {fileID: 0}
+    - target: {fileID: 5195323459287259603, guid: 218209c6ef6b54544b63658d261e770d, type: 3}
+      propertyPath: _inactiveButtonColor.b
+      value: 0.59607846
+      objectReference: {fileID: 0}
+    - target: {fileID: 5195323459287259603, guid: 218209c6ef6b54544b63658d261e770d, type: 3}
+      propertyPath: _inactiveButtonColor.g
+      value: 0.49411765
+      objectReference: {fileID: 0}
+    - target: {fileID: 5195323459287259603, guid: 218209c6ef6b54544b63658d261e770d, type: 3}
+      propertyPath: _inactiveButtonColor.r
+      value: 0.29803923
+      objectReference: {fileID: 0}
     - target: {fileID: 5460748061024563265, guid: 218209c6ef6b54544b63658d261e770d, type: 3}
       propertyPath: m_Name
       value: Omnibus
@@ -2037,7 +2101,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 823155677}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1911341250}
+        m_TargetAssemblyTypeName: Moyba.Planet.UI.ActivityDialog, Moyba.Planet
+        m_MethodName: HandleAssign
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1911341246}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &823155677
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2229,6 +2317,7 @@ GameObject:
   - component: {fileID: 938060034}
   - component: {fileID: 938060033}
   - component: {fileID: 938060032}
+  - component: {fileID: 938060035}
   m_Layer: 5
   m_Name: Assist Button
   m_TagString: Untagged
@@ -2299,7 +2388,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 938060033}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 938060035}
+        m_TargetAssemblyTypeName: Moyba.Planet.UI.ActivityDialogOption, Moyba.Planet
+        m_MethodName: HandleClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &938060033
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2338,6 +2439,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 938060030}
   m_CullTransparentMesh: 1
+--- !u!114 &938060035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 938060030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53a176bfca3a8234eb7008ddba45d8c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _activityDialog: {fileID: 1911341250}
+  _buttonBackground: {fileID: 938060033}
+  _activity: 1
 --- !u!1 &952492141
 GameObject:
   m_ObjectHideFlags: 0
@@ -4443,7 +4559,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1610148018}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1911341246}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &1610148018
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5170,8 +5298,9 @@ GameObject:
   - component: {fileID: 1911341247}
   - component: {fileID: 1911341249}
   - component: {fileID: 1911341248}
+  - component: {fileID: 1911341250}
   m_Layer: 5
-  m_Name: Activity Popup
+  m_Name: Activity Dialog
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5235,6 +5364,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1911341246}
   m_CullTransparentMesh: 1
+--- !u!114 &1911341250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1911341246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b158179b0d083b47ba00b97c838085e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _manager: {fileID: 11400000, guid: e58b96985aa818949a7ef255c1f6775c, type: 2}
 --- !u!1 &1943611792
 GameObject:
   m_ObjectHideFlags: 0
@@ -5599,6 +5741,7 @@ GameObject:
   - component: {fileID: 2073197681}
   - component: {fileID: 2073197680}
   - component: {fileID: 2073197679}
+  - component: {fileID: 2073197682}
   m_Layer: 5
   m_Name: Repair Button
   m_TagString: Untagged
@@ -5669,7 +5812,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2073197680}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2073197682}
+        m_TargetAssemblyTypeName: Moyba.Planet.UI.ActivityDialogOption, Moyba.Planet
+        m_MethodName: HandleClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2073197680
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5708,6 +5863,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2073197677}
   m_CullTransparentMesh: 1
+--- !u!114 &2073197682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2073197677}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53a176bfca3a8234eb7008ddba45d8c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _activityDialog: {fileID: 1911341250}
+  _buttonBackground: {fileID: 2073197680}
+  _activity: 3
 --- !u!1 &2081997530
 GameObject:
   m_ObjectHideFlags: 0

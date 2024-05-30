@@ -17,7 +17,7 @@ namespace Moyba.Planet
         public Location Location
         {
             get => _location;
-            private set => _Set(value, ref _location, changed: this.OnLocationChanged);
+            private set => _Set(value, ref _location, changed: this.OnLocationChanged, changing: this.OnLocationChanging);
         }
 
         private int LocationIndex
@@ -30,6 +30,7 @@ namespace Moyba.Planet
             }
         }
 
+        public event ValueEventHandler<Location> OnLocationChanging;
         public event ValueEventHandler<Location> OnLocationChanged;
 
         internal void SetLocation(Location location)
@@ -77,12 +78,29 @@ namespace Moyba.Planet
 
         private class _StubPlanetTarget : TraitStubBase<PlanetTarget>, IPlanetTarget
         {
-            public Location Location => default;
+            private Location? _location;
+            public Location Location => _location.GetValueOrDefault();
 
+            public event ValueEventHandler<Location> OnLocationChanging;
             public event ValueEventHandler<Location> OnLocationChanged;
+
+            public override void TransferControlFrom(PlanetTarget trait)
+            {
+                base.TransferControlFrom(trait);
+
+                _location = trait._location;
+            }
+
+            public override void TransferControlTo(PlanetTarget trait)
+            {
+                base.TransferControlTo(trait);
+
+                if (_location.HasValue) trait._location = _location.Value;
+            }
 
             protected override void TransferEvents(PlanetTarget trait)
             {
+                (this.OnLocationChanging, trait.OnLocationChanging) = (trait.OnLocationChanging, this.OnLocationChanging);
                 (this.OnLocationChanged, trait.OnLocationChanged) = (trait.OnLocationChanged, this.OnLocationChanged);
             }
         }

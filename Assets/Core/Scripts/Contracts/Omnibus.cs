@@ -24,6 +24,11 @@ namespace Moyba.Contracts
         [SerializeField, Require(typeof(IProjectileManager))] private Object _projectiles;
         [SerializeField, Require(typeof(IShipManager))] private Object _ship;
 
+        [Header("UI Configuration")]
+        [SerializeField] private Color _activeButtonColor = Color.white;
+        [SerializeField] private Color _inactiveButtonColor = Color.white;
+        [SerializeField] private Color _disabledButtonColor = Color.gray;
+
         public static IBoundsManager Bounds { get; private set; }
         public static ICameraManager Camera { get; private set; }
         public static IEnemyManager Enemies { get; private set; }
@@ -32,6 +37,10 @@ namespace Moyba.Contracts
         public static IPlanetManager Planet { get; private set; }
         public static IProjectileManager Projectiles { get; private set; }
         public static IShipManager Ship { get; private set; }
+
+        public static Color ActiveButtonColor => _Instance._activeButtonColor;
+        public static Color InactiveButtonColor => _Instance._inactiveButtonColor;
+        public static Color DisabledButtonColor => _Instance._disabledButtonColor;
 
         private void Awake()
         {

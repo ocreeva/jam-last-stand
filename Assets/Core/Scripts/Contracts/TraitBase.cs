@@ -25,14 +25,14 @@ namespace Moyba.Contracts
                 set => _enabled = value;
             }
 
-            public void TransferControlFrom(TTrait trait)
+            public virtual void TransferControlFrom(TTrait trait)
             {
                 _enabled = trait.enabled;
 
                 this.TransferEvents(trait);
             }
 
-            public void TransferControlTo(TTrait trait)
+            public virtual void TransferControlTo(TTrait trait)
             {
                 if (_enabled.HasValue) trait.enabled = _enabled.Value;
 

@@ -15,15 +15,7 @@ namespace Moyba.Contracts
             ValueEventHandler<T> changing = null,
             ValueEventHandler<T> changed = null,
             bool includeIdempotent = false)
-        {
-            if (!includeIdempotent && EqualityComparer<T>.Default.Equals(value, field)) return;
-
-            changing?.Invoke(this, field);
-
-            field = value;
-
-            changed?.Invoke(this, field);
-        }
+            => _ContractUtility.Set<T>(this, value, ref field, changing, changed, includeIdempotent);
 
         protected void _Set(
             bool value,
@@ -31,13 +23,7 @@ namespace Moyba.Contracts
             SimpleEventHandler onFalse = null,
             SimpleEventHandler onTrue = null,
             bool includeIdempotent = false)
-        {
-            if (!includeIdempotent && value == field) return;
-
-            field = value;
-
-            (value ? onTrue : onFalse)?.Invoke(this);
-        }
+            => _ContractUtility.Set(this, value, ref field, onFalse, onTrue, includeIdempotent);
 
 #if UNITY_EDITOR
         // for nonstandard names

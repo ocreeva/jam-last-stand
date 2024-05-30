@@ -4,6 +4,7 @@ namespace Moyba.Planet
     {
         None = 0,
         Assist,
+        Fortify,
         Repair,
     }
 }

@@ -4,6 +4,7 @@ namespace Moyba.Planet
     {
         Location Location { get; }
 
+        event ValueEventHandler<Location> OnLocationChanging;
         event ValueEventHandler<Location> OnLocationChanged;
     }
 }
