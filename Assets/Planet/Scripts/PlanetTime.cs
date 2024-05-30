@@ -37,8 +37,14 @@ namespace Moyba.Planet
         public event SimpleEventHandler OnPause;
         public event SimpleEventHandler OnResume;
 
+        public void Pause()
+            => this.IsPaused = true;
+
         public void TogglePause()
             => this.IsPaused = !this.IsPaused;
+
+        internal void AdvanceDay()
+            => this.Day++;
 
         private void Awake()
         {

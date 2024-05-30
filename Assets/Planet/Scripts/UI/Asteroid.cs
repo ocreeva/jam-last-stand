@@ -41,6 +41,7 @@ namespace Moyba.Planet.UI
 
             var damage = _impactDamage + Random.value * _impactDamageVariance;
             locationData.ApplyDamage(damage);
+            locationData.AsteroidCount--;
 
             UnityEngine.Object.Instantiate(_explosionFxPrefab, this.transform.position, Quaternion.identity, targetContainer);
             UnityEngine.Object.Destroy(this.gameObject);
