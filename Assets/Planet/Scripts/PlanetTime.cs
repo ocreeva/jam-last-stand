@@ -13,7 +13,7 @@ namespace Moyba.Planet
 
         [NonSerialized] private int _day;
         [NonSerialized] private float _elapsedTime;
-        [NonSerialized] private bool _isPaused;
+        [NonSerialized] private bool _isPaused = true;
 
         internal static IPlanetTime Stub => _Stub;
 
