@@ -32,9 +32,9 @@ namespace Moyba.Planet.UI
             }
         }
 
-        private IEnumerator Coroutine_SpawnAsteroids(int count, float delayBetweenSpawns)
+        private IEnumerator Coroutine_SpawnAsteroids(int count)
         {
-            if (delayBetweenSpawns > 0f) yield return null;
+            yield return null;
 
             while (_asteroidContainer.childCount < count)
             {
@@ -44,17 +44,21 @@ namespace Moyba.Planet.UI
                     Quaternion.identity,
                     _asteroidContainer);
 
-                if (delayBetweenSpawns > 0f) yield return new WaitForSeconds(delayBetweenSpawns);
+                if (_delayBetweenSpawns > 0f) yield return new WaitForSeconds(_delayBetweenSpawns);
             }
         }
 
         private void HandleAsteroidCountChanged(UnityEngine.Object _, int count)
         {
-            this.StartCoroutine(Coroutine_SpawnAsteroids(count, _delayBetweenSpawns));
+            if (_asteroidContainer.childCount >= count) return;
+
+            this.StartCoroutine(Coroutine_SpawnAsteroids(count));
         }
 
         private void HandleDayChanged(UnityEngine.Object _, int day)
         {
+            if (_asteroidContainer.childCount == 0) return;
+
             this.StartCoroutine(Coroutine_LaunchAsteroids());
         }
 
@@ -74,7 +78,14 @@ namespace Moyba.Planet.UI
 
         private void Start()
         {
-            if (_locationData.AsteroidCount > 0) this.StartCoroutine(Coroutine_SpawnAsteroids(_locationData.AsteroidCount, 0f));
+            while (_asteroidContainer.childCount < _locationData.AsteroidCount)
+            {
+                Object.Instantiate(
+                    _asteroidPrefab,
+                    _GetRandomWorldPositionInRect(_asteroidContainer),
+                    Quaternion.identity,
+                    _asteroidContainer);
+            }
         }
 
         private static Vector3 _GetRandomWorldPositionInRect(RectTransform rectTransform)
