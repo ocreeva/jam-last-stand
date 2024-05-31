@@ -15,3 +15,4 @@ MonoBehaviour:
   _manager: {fileID: 11400000, guid: e58b96985aa818949a7ef255c1f6775c, type: 2}
   _location: 1
   _displayName: North America
+  _canDefend: 0

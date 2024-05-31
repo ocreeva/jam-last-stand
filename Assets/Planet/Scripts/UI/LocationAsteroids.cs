@@ -21,6 +21,8 @@ namespace Moyba.Planet.UI
 
         private IEnumerator Coroutine_LaunchAsteroids()
         {
+            _locationData.AsteroidCount = 0;
+
             for (var index = _asteroidContainer.childCount - 1; index >= 0; index--)
             {
                 var asteroid = _asteroidContainer.GetChild(index).GetComponent<Asteroid>();

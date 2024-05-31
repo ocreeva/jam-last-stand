@@ -7,6 +7,7 @@ using Moyba.Planet;
 using Moyba.Projectiles;
 using Moyba.Ship;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Moyba.Contracts
 {
@@ -52,6 +53,11 @@ namespace Moyba.Contracts
         public static Color CriticalStatusColor => _Instance._criticalStatusColor;
         public static Color AlertStatusColor => _Instance._alertStatusColor;
         public static Color NoStatusColor => _Instance._noStatusColor;
+
+        public void LoadSpaceCombatScene()
+        {
+            SceneManager.LoadScene("Space Combat");
+        }
 
         private void Awake()
         {

@@ -13,6 +13,9 @@ namespace Moyba.Planet.UI
         [SerializeField] private TextMeshProUGUI _defenses;
         [SerializeField] private TextMeshProUGUI _activity;
         [SerializeField] private TextMeshProUGUI _target;
+        [SerializeField] private GameObject _defendButton;
+
+        [NonSerialized] private bool _isFirstLocationUpdate = true;
 
         private void HandleTargetLocationChanged(UnityEngine.Object _, Location location)
         {
@@ -23,6 +26,7 @@ namespace Moyba.Planet.UI
             locationData.OnActivityChanged += this.HandleLocationActivityChanged;
             locationData.OnDefensesChanged += this.HandleLocationDefensesChanged;
             locationData.OnInfrastructureChanged += this.HandleLocationInfrastructureChanged;
+            locationData.OnAsteroidCountChanged += this.HandleLocationAsteroidCountChanged;
 
             _name.text = locationData.DisplayName;
 
@@ -30,6 +34,11 @@ namespace Moyba.Planet.UI
             _UpdatePercentageComponent(locationData.Defenses, _defenses);
 
             this.UpdateActivity(locationData.Activity);
+
+            // HACK: hide the defend button on scene load, to avoid UI flickering
+            if (!_isFirstLocationUpdate) this.UpdateDefendButton(locationData.AsteroidCount);
+
+            _isFirstLocationUpdate = false;
         }
 
         private void HandleTargetLocationChanging(UnityEngine.Object _, Location location)
@@ -41,10 +50,14 @@ namespace Moyba.Planet.UI
             locationData.OnActivityChanged -= this.HandleLocationActivityChanged;
             locationData.OnDefensesChanged -= this.HandleLocationDefensesChanged;
             locationData.OnInfrastructureChanged -= this.HandleLocationInfrastructureChanged;
+            locationData.OnAsteroidCountChanged -= this.HandleLocationAsteroidCountChanged;
         }
 
         private void HandleLocationActivityChanged(UnityEngine.Object _, Activity activity)
             => this.UpdateActivity(activity);
+
+        private void HandleLocationAsteroidCountChanged(UnityEngine.Object _, int asteroidCount)
+            => this.UpdateDefendButton(asteroidCount);
 
         private void HandleLocationDefensesChanged(UnityEngine.Object _, float defenses)
             => _UpdatePercentageComponent(defenses, _defenses);
@@ -64,6 +77,7 @@ namespace Moyba.Planet.UI
                 locationData.OnActivityChanged -= this.HandleLocationActivityChanged;
                 locationData.OnDefensesChanged -= this.HandleLocationDefensesChanged;
                 locationData.OnInfrastructureChanged -= this.HandleLocationInfrastructureChanged;
+                locationData.OnAsteroidCountChanged -= this.HandleLocationAsteroidCountChanged;
             }
         }
 
@@ -79,6 +93,7 @@ namespace Moyba.Planet.UI
                 locationData.OnActivityChanged += this.HandleLocationActivityChanged;
                 locationData.OnDefensesChanged += this.HandleLocationDefensesChanged;
                 locationData.OnInfrastructureChanged += this.HandleLocationInfrastructureChanged;
+                locationData.OnAsteroidCountChanged += this.HandleLocationAsteroidCountChanged;
             }
         }
 
@@ -104,6 +119,11 @@ namespace Moyba.Planet.UI
                 default:
                     throw new ArgumentException($"Unhandled {nameof(Activity)} value: {activity}", nameof(activity));
             }
+        }
+
+        private void UpdateDefendButton(int asteroidCount)
+        {
+            _defendButton.SetActive(asteroidCount > 0);
         }
 
         private void _UpdatePercentageComponent(float value, TextMeshProUGUI component)
