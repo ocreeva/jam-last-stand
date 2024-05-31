@@ -56,12 +56,39 @@ namespace Moyba.Ship
             this.Update_Rotate(deltaTime);
         }
 
+        private void Update()
+        {
+            this.Update_Bounds();
+        }
+
         private void Update_Accelerate(float deltaTime)
         {
             var move = Omnibus.Input.Ship.Move;
             if (Mathf.Abs(move) < float.Epsilon) return;
 
             _velocity = Vector3.ClampMagnitude(_velocity + this.transform.up * deltaTime * _accelerationRate * move, _maximumVelocity);
+        }
+
+        private void Update_Bounds()
+        {
+            var position = this.transform.position;
+            var maximumDistance = Omnibus.Bounds.MaximumDistance;
+
+            if (position.x > maximumDistance || position.x < -maximumDistance)
+            {
+                position.x = Mathf.Clamp(position.x, -maximumDistance, maximumDistance);
+                this.transform.position = position;
+
+                _velocity.x = 0;
+            }
+
+            if (position.y > maximumDistance || position.y < -maximumDistance)
+            {
+                position.y = Mathf.Clamp(position.y, -maximumDistance, maximumDistance);
+                this.transform.position = position;
+
+                _velocity.y = 0;
+            }
         }
 
         private void Update_Move(float deltaTime)

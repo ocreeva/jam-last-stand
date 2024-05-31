@@ -52,3 +52,11 @@ MonoBehaviour:
   _planet: {fileID: 11400000, guid: e58b96985aa818949a7ef255c1f6775c, type: 2}
   _projectiles: {fileID: 11400000, guid: b25dd51cd9e805742b5db6fd0eeb594a, type: 2}
   _ship: {fileID: 11400000, guid: 71116c489ac795a4895c41c32e992a3f, type: 2}
+  _activeButtonColor: {r: 0.4509804, g: 0.7490196, b: 0.9019608, a: 1}
+  _inactiveButtonColor: {r: 0.3, g: 0.49999997, b: 0.6, a: 1}
+  _disabledButtonColor: {r: 0.32, g: 0.37333333, b: 0.4, a: 1}
+  _healthyStatusColor: {r: 0, g: 1, b: 0, a: 1}
+  _damagedStatusColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  _criticalStatusColor: {r: 1, g: 0, b: 0, a: 1}
+  _alertStatusColor: {r: 1, g: 0, b: 0, a: 1}
+  _noStatusColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}

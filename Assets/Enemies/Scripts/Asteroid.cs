@@ -41,6 +41,16 @@ namespace Moyba.Enemies
             _heading = (target - this.transform.position).normalized * speed;
         }
 
+        private void Update()
+        {
+            this.Update_Bounds();
+        }
+
+        private void Update_Bounds()
+        {
+            if (this.transform.position.y < -Omnibus.Bounds.AlertDistance) UnityEngine.Object.Destroy(this.gameObject);
+        }
+
         private void Update_Position(float deltaTime)
         {
             this.transform.position += _heading * deltaTime;

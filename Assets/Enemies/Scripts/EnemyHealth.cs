@@ -22,7 +22,13 @@ namespace Moyba.Enemies
         {
             _currentHealth -= damage;
 
-            if (_currentHealth <= 0) UnityEngine.Object.Destroy(this.gameObject);
+            if (_currentHealth <= 0)
+            {
+                var location = Omnibus.Planet.Target.Location;
+                var locationData = Omnibus.Planet.GetLocationData(location);
+                locationData.AsteroidCount--;
+                UnityEngine.Object.Destroy(this.gameObject);
+            }
             else _animator.SetTrigger(_DamageParameter);
         }
 

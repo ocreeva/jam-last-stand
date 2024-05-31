@@ -35,6 +35,8 @@ namespace Moyba.Contracts
         [SerializeField] private Color _alertStatusColor = Color.red;
         [SerializeField] private Color _noStatusColor = Color.gray;
 
+        public static Omnibus Instance => _Instance;
+
         public static IBoundsManager Bounds { get; private set; }
         public static ICameraManager Camera { get; private set; }
         public static IEnemyManager Enemies { get; private set; }

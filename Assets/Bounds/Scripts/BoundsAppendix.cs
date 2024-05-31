@@ -38,8 +38,6 @@ namespace Moyba.Bounds
         {
             boundsPanel.ShouldShowAlert = distance > _manager.AlertDistance;
             boundsPanel.ShouldShowWarning = distance > _manager.WarningDistance;
-
-            if (distance > _manager.MaximumDistance) Debug.LogError("Ship out of bounds -- do something here!");
         }
     }
 }

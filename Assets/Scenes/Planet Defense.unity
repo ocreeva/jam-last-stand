@@ -1769,42 +1769,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 5195323459287259603, guid: 218209c6ef6b54544b63658d261e770d, type: 3}
-      propertyPath: _activeButtonColor.b
-      value: 0.9019608
-      objectReference: {fileID: 0}
-    - target: {fileID: 5195323459287259603, guid: 218209c6ef6b54544b63658d261e770d, type: 3}
-      propertyPath: _activeButtonColor.g
-      value: 0.7490196
-      objectReference: {fileID: 0}
-    - target: {fileID: 5195323459287259603, guid: 218209c6ef6b54544b63658d261e770d, type: 3}
-      propertyPath: _activeButtonColor.r
-      value: 0.4509804
-      objectReference: {fileID: 0}
-    - target: {fileID: 5195323459287259603, guid: 218209c6ef6b54544b63658d261e770d, type: 3}
-      propertyPath: _disabledButtonColor.b
-      value: 0.39607844
-      objectReference: {fileID: 0}
-    - target: {fileID: 5195323459287259603, guid: 218209c6ef6b54544b63658d261e770d, type: 3}
-      propertyPath: _disabledButtonColor.g
-      value: 0.36967322
-      objectReference: {fileID: 0}
-    - target: {fileID: 5195323459287259603, guid: 218209c6ef6b54544b63658d261e770d, type: 3}
-      propertyPath: _disabledButtonColor.r
-      value: 0.31686276
-      objectReference: {fileID: 0}
-    - target: {fileID: 5195323459287259603, guid: 218209c6ef6b54544b63658d261e770d, type: 3}
-      propertyPath: _inactiveButtonColor.b
-      value: 0.59607846
-      objectReference: {fileID: 0}
-    - target: {fileID: 5195323459287259603, guid: 218209c6ef6b54544b63658d261e770d, type: 3}
-      propertyPath: _inactiveButtonColor.g
-      value: 0.49411765
-      objectReference: {fileID: 0}
-    - target: {fileID: 5195323459287259603, guid: 218209c6ef6b54544b63658d261e770d, type: 3}
-      propertyPath: _inactiveButtonColor.r
-      value: 0.29803923
-      objectReference: {fileID: 0}
     - target: {fileID: 5460748061024563265, guid: 218209c6ef6b54544b63658d261e770d, type: 3}
       propertyPath: m_Name
       value: Omnibus

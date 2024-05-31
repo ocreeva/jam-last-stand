@@ -11,7 +11,7 @@ namespace Moyba.Planet
 
         Activity Activity { get; }
 
-        int AsteroidCount { get; }
+        int AsteroidCount { get; set; }
 
         event ValueEventHandler<float> OnInfrastructureChanged;
         event ValueEventHandler<float> OnDefensesChanged;

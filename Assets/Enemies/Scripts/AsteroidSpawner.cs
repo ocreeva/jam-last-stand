@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Moyba.Enemies
 {
-    public class AsteroidSpawner : TraitBase<EnemyManager>
+    public class AsteroidSpawner : TraitBase<EnemyManager>, IEnemySpawner
     {
         [Header("Configuration")]
         [SerializeField, Range(0, 180)] private int _startDelay;
@@ -16,6 +16,8 @@ namespace Moyba.Enemies
 
         private IEnumerator Start()
         {
+            _manager.Register(this);
+
             var location = Omnibus.Planet.Target.Location;
             var locationData = Omnibus.Planet.GetLocationData(location);
             var asteroidCount = locationData.AsteroidCount;
@@ -30,6 +32,8 @@ namespace Moyba.Enemies
                 asteroidCount--;
                 nextDelay = _minDelay + UnityEngine.Random.value * _delayVariance;
             }
+
+            _manager.Deregister(this);
         }
 
         private void SpawnEnemy()
