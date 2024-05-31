@@ -78,8 +78,7 @@ namespace Moyba.Planet
 
         private class _StubPlanetTarget : TraitStubBase<PlanetTarget>, IPlanetTarget
         {
-            private Location? _location;
-            public Location Location => _location.GetValueOrDefault();
+            public Location Location { get; private set; } = Location.NorthAmerica;
 
             public event ValueEventHandler<Location> OnLocationChanging;
             public event ValueEventHandler<Location> OnLocationChanged;
@@ -88,14 +87,14 @@ namespace Moyba.Planet
             {
                 base.TransferControlFrom(trait);
 
-                _location = trait._location;
+                this.Location = trait.Location;
             }
 
             public override void TransferControlTo(PlanetTarget trait)
             {
                 base.TransferControlTo(trait);
 
-                if (_location.HasValue) trait._location = _location.Value;
+                trait.Location = this.Location;
             }
 
             protected override void TransferEvents(PlanetTarget trait)

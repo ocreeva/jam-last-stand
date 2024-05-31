@@ -201,7 +201,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _manager: {fileID: 11400000, guid: 72bd7f0490bfeb244905aa78ddce879d, type: 2}
   _speedMin: 1
-  _speedVariance: 2
+  _speedVariance: 3
 --- !u!114 &3573975636494167574
 MonoBehaviour:
   m_ObjectHideFlags: 0

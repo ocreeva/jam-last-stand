@@ -54,6 +54,11 @@ namespace Moyba.Contracts
         public static Color AlertStatusColor => _Instance._alertStatusColor;
         public static Color NoStatusColor => _Instance._noStatusColor;
 
+        public void LoadPlanetDefenseScene()
+        {
+            SceneManager.LoadScene("Planet Defense");
+        }
+
         public void LoadSpaceCombatScene()
         {
             SceneManager.LoadScene("Space Combat");

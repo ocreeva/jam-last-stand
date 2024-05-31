@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4460663033676778656}
   - component: {fileID: 1655655996436749378}
-  - component: {fileID: 6273944472302301519}
+  - component: {fileID: 7735091641897603231}
   m_Layer: 0
   m_Name: Enemies
   m_TagString: Untagged
@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _manager: {fileID: 11400000, guid: 72bd7f0490bfeb244905aa78ddce879d, type: 2}
---- !u!114 &6273944472302301519
+--- !u!114 &7735091641897603231
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -55,12 +55,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1808712183982819884}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8020418536637aa4a8b7bb39909c2170, type: 3}
+  m_Script: {fileID: 11500000, guid: 5f32658d0b4ed2847a46cdd3986907ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _manager: {fileID: 11400000, guid: 72bd7f0490bfeb244905aa78ddce879d, type: 2}
-  _startDelay: 0
-  _minDelay: 1
-  _delayVariance: 3
-  _duration: 30
-  _enemyPrefab: {fileID: 4703657479852592530, guid: ee3e7d3c0f050cb44be5dfe00a2f30ff, type: 3}
+  _startDelay: 1
+  _minDelay: 2
+  _delayVariance: 4
+  _enemyPrefab: {fileID: -8029862988019301832, guid: 671eff7b090a43345a989e89a10829ea, type: 3}
