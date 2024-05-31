@@ -1524,8 +1524,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 947c0bed7394d3046bf771b4673fb4d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _location: 2
+  _normalSprite: {fileID: -2285186943572279553, guid: 0ec22a11f5f50ca4fa833aca7440f06b, type: 3}
+  _alertSprite: {fileID: -5546806191583477715, guid: c88b54f6b2898b342ae2437c0235f6fb, type: 3}
   _planetTarget: {fileID: 7837843946278328903}
+  _image: {fileID: 678128124}
+  _useColorValueOverride: 0
+  _colorValueOverride: 0
+  _location: 2
 --- !u!114 &678128123
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4545,8 +4550,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 947c0bed7394d3046bf771b4673fb4d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _location: 1
+  _normalSprite: {fileID: -2285186943572279553, guid: 0ec22a11f5f50ca4fa833aca7440f06b, type: 3}
+  _alertSprite: {fileID: -5546806191583477715, guid: c88b54f6b2898b342ae2437c0235f6fb, type: 3}
   _planetTarget: {fileID: 7837843946278328903}
+  _image: {fileID: 1466615887}
+  _useColorValueOverride: 1
+  _colorValueOverride: 0.8
+  _location: 1
 --- !u!114 &1466615886
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5201,8 +5211,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 947c0bed7394d3046bf771b4673fb4d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _location: 3
+  _normalSprite: {fileID: -2285186943572279553, guid: 0ec22a11f5f50ca4fa833aca7440f06b, type: 3}
+  _alertSprite: {fileID: -5546806191583477715, guid: c88b54f6b2898b342ae2437c0235f6fb, type: 3}
   _planetTarget: {fileID: 7837843946278328903}
+  _image: {fileID: 1753012670}
+  _useColorValueOverride: 0
+  _colorValueOverride: 0
+  _location: 3
 --- !u!114 &1753012669
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5674,8 +5689,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 947c0bed7394d3046bf771b4673fb4d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _location: 5
+  _normalSprite: {fileID: -2285186943572279553, guid: 0ec22a11f5f50ca4fa833aca7440f06b, type: 3}
+  _alertSprite: {fileID: -5546806191583477715, guid: c88b54f6b2898b342ae2437c0235f6fb, type: 3}
   _planetTarget: {fileID: 7837843946278328903}
+  _image: {fileID: 1869088573}
+  _useColorValueOverride: 0
+  _colorValueOverride: 0
+  _location: 5
 --- !u!114 &1869088572
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5961,10 +5981,6 @@ MonoBehaviour:
   _defenses: {fileID: 2081997532}
   _activity: {fileID: 1273503528}
   _target: {fileID: 1391234921}
-  _healthyColor: {r: 0, g: 1, b: 0, a: 1}
-  _damagedColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-  _criticalColor: {r: 1, g: 0, b: 0, a: 1}
-  _zeroColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
 --- !u!1 &1980640243
 GameObject:
   m_ObjectHideFlags: 0

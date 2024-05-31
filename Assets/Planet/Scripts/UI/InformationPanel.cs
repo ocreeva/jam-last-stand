@@ -14,12 +14,6 @@ namespace Moyba.Planet.UI
         [SerializeField] private TextMeshProUGUI _activity;
         [SerializeField] private TextMeshProUGUI _target;
 
-        [Header("Configuration")]
-        [SerializeField] private Color _healthyColor = Color.green;
-        [SerializeField] private Color _damagedColor = Color.yellow;
-        [SerializeField] private Color _criticalColor = Color.red;
-        [SerializeField] private Color _zeroColor = Color.gray;
-
         private void HandleTargetLocationChanged(UnityEngine.Object _, Location location)
         {
             if (location == Location.None) return;
@@ -123,10 +117,10 @@ namespace Moyba.Planet.UI
 
         private Color _GetPercentageColor(float value)
             => value switch {
-                > 0.8f => _healthyColor,
-                > 0.4f => _damagedColor,
-                > float.Epsilon => _criticalColor,
-                _ => _zeroColor
+                > 0.8f => Omnibus.HealthyStatusColor,
+                > 0.4f => Omnibus.DamagedStatusColor,
+                > float.Epsilon => Omnibus.CriticalStatusColor,
+                _ => Omnibus.NoStatusColor
             };
     }
 }

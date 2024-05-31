@@ -28,6 +28,11 @@ namespace Moyba.Contracts
         [SerializeField] private Color _activeButtonColor = Color.white;
         [SerializeField] private Color _inactiveButtonColor = Color.white;
         [SerializeField] private Color _disabledButtonColor = Color.gray;
+        [SerializeField] private Color _healthyStatusColor = Color.green;
+        [SerializeField] private Color _damagedStatusColor = Color.yellow;
+        [SerializeField] private Color _criticalStatusColor = Color.red;
+        [SerializeField] private Color _alertStatusColor = Color.red;
+        [SerializeField] private Color _noStatusColor = Color.gray;
 
         public static IBoundsManager Bounds { get; private set; }
         public static ICameraManager Camera { get; private set; }
@@ -41,6 +46,12 @@ namespace Moyba.Contracts
         public static Color ActiveButtonColor => _Instance._activeButtonColor;
         public static Color InactiveButtonColor => _Instance._inactiveButtonColor;
         public static Color DisabledButtonColor => _Instance._disabledButtonColor;
+
+        public static Color HealthyStatusColor => _Instance._healthyStatusColor;
+        public static Color DamagedStatusColor => _Instance._damagedStatusColor;
+        public static Color CriticalStatusColor => _Instance._criticalStatusColor;
+        public static Color AlertStatusColor => _Instance._alertStatusColor;
+        public static Color NoStatusColor => _Instance._noStatusColor;
 
         private void Awake()
         {
