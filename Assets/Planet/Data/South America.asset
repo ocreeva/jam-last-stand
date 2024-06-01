@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _manager: {fileID: 11400000, guid: e58b96985aa818949a7ef255c1f6775c, type: 2}
   _location: 2
-  _displayName: South America
+  _displayName: S. America

@@ -113,7 +113,7 @@ namespace Moyba.Planet.UI
 
                 case Activity.Repair:
                     _activity.text = "Repairing";
-                    _target.text = "Critical Infrastructure";
+                    _target.text = "Infrastructure";
                     break;
 
                 default:

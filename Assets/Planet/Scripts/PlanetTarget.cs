@@ -78,7 +78,7 @@ namespace Moyba.Planet
 
         private class _StubPlanetTarget : TraitStubBase<PlanetTarget>, IPlanetTarget
         {
-            public Location Location { get; private set; } = Location.NorthAmerica;
+            public Location Location { get; private set; }
 
             public event ValueEventHandler<Location> OnLocationChanging;
             public event ValueEventHandler<Location> OnLocationChanged;

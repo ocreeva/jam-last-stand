@@ -158,7 +158,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      meteor_detailedSmall_0: 1375435117325979677
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

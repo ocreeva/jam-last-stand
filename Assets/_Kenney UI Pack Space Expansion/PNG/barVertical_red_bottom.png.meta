@@ -158,7 +158,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      barVertical_red_bottom_0: 8988537339419135548
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
