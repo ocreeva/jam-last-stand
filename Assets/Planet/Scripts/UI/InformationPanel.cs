@@ -15,8 +15,6 @@ namespace Moyba.Planet.UI
         [SerializeField] private TextMeshProUGUI _target;
         [SerializeField] private GameObject _defendButton;
 
-        [NonSerialized] private bool _isFirstLocationUpdate = true;
-
         private void HandleTargetLocationChanged(UnityEngine.Object _, Location location)
         {
             if (location == Location.None) return;
@@ -35,10 +33,7 @@ namespace Moyba.Planet.UI
 
             this.UpdateActivity(locationData.Activity);
 
-            // HACK: hide the defend button on scene load, to avoid UI flickering
-            if (!_isFirstLocationUpdate) this.UpdateDefendButton(locationData.AsteroidCount);
-
-            _isFirstLocationUpdate = false;
+            this.UpdateDefendButton(locationData.AsteroidCount);
         }
 
         private void HandleTargetLocationChanging(UnityEngine.Object _, Location location)
@@ -95,6 +90,19 @@ namespace Moyba.Planet.UI
                 locationData.OnInfrastructureChanged += this.HandleLocationInfrastructureChanged;
                 locationData.OnAsteroidCountChanged += this.HandleLocationAsteroidCountChanged;
             }
+        }
+
+        private void Start()
+        {
+            var location = Omnibus.Planet.Target.Location;
+            var locationData = Omnibus.Planet.GetLocationData(location);
+
+            _name.text = locationData.DisplayName;
+
+            _UpdatePercentageComponent(locationData.Infrastructure, _infrastructure);
+            _UpdatePercentageComponent(locationData.Defenses, _defenses);
+
+            this.UpdateActivity(locationData.Activity);
         }
 
         private void UpdateActivity(Activity activity)

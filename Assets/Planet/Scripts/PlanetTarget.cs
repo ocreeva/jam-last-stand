@@ -53,13 +53,13 @@ namespace Moyba.Planet
 
         private void Awake()
         {
+            _locations = _manager.GetLocations().ToArray();
+
             this._Assert(ReferenceEquals(_manager.Target, _Stub), "is replacing a non-stub instance.");
 
             _manager.Target = this;
 
             _Stub.TransferControlTo(this);
-
-            _locations = _manager.GetLocations().ToArray();
         }
 
         private void OnDestroy()
@@ -71,14 +71,12 @@ namespace Moyba.Planet
             _Stub.TransferControlFrom(this);
         }
 
-        private void Start()
-        {
-            this.LocationIndex = 0;
-        }
-
         private class _StubPlanetTarget : TraitStubBase<PlanetTarget>, IPlanetTarget
         {
-            public Location Location { get; private set; }
+            private int? _locationIndex;
+            private Location _location;
+
+            public Location Location => _location;
 
             public event ValueEventHandler<Location> OnLocationChanging;
             public event ValueEventHandler<Location> OnLocationChanged;
@@ -87,14 +85,23 @@ namespace Moyba.Planet
             {
                 base.TransferControlFrom(trait);
 
-                this.Location = trait.Location;
+                _location = trait._location;
+                _locationIndex = trait._locationIndex;
             }
 
             public override void TransferControlTo(PlanetTarget trait)
             {
                 base.TransferControlTo(trait);
 
-                trait.Location = this.Location;
+                if (_locationIndex.HasValue)
+                {
+                    trait._locationIndex = _locationIndex.Value;
+                    trait._location = trait._locations[trait._locationIndex];
+                }
+                else
+                {
+                    trait.LocationIndex = _locationIndex.GetValueOrDefault(0);
+                }
             }
 
             protected override void TransferEvents(PlanetTarget trait)
